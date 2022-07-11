@@ -1,10 +1,10 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useBoolean from '../useBoolean'
+import useToggle from './useToggle'
 
-describe('useBoolean', () => {
+describe('useToggle', () => {
   it('switch from false to true', () => {
-    const { result } = renderHook(useBoolean)
+    const { result } = renderHook(useToggle)
 
     expect(result.current[0]).toBe(false)
 
@@ -16,12 +16,12 @@ describe('useBoolean', () => {
   })
 
   it('switch from true to false', () => {
-    const { result } = renderHook(() => useBoolean(true))
+    const { result } = renderHook(() => useToggle(true))
 
     expect(result.current[0]).toBe(true)
 
     act(() => {
-      result.current[2]()
+      result.current[1]()
     })
 
     expect(result.current[0]).toBe(false)

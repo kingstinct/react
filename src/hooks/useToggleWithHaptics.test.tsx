@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useToggleWithHaptics from '../useToggleWithHaptics'
+import useToggleWithHaptics from './useToggleWithHaptics'
 
 describe('useToggleWithHaptics', () => {
   it('switch from false to true', () => {

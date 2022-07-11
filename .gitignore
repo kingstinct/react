@@ -1,3 +1,10 @@
 lib
 node_modules
 .DS_Store
+/components
+/hooks
+/contexts
+/primitives
+/utils
+index.js
+index.d.ts

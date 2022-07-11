@@ -2,7 +2,7 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "lib",
+    "outDir": ".",
     "removeComments": true
   },
   "include": [ "src" ]

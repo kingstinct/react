@@ -6,7 +6,7 @@ function useEvent<T extends readonly unknown[], TRet = unknown>(handler: (...arg
   // In a real implementation, this would run before layout effects
   useEffect(() => {
     handlerRef.current = handler
-  })
+  }, [handler])
 
   return useCallback((...args: T) => {
     // In a real implementation, this would throw if called during render

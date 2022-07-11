@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useBooleanWithHaptics from '../useBooleanWithHaptics'
+import useBooleanWithHaptics from './useBooleanWithHaptics'
 
 describe('useBooleanWithHaptics', () => {
   it('switch from false to true', () => {
