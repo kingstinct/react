@@ -3,7 +3,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   maxWorkers: '50%',
-
   preset: 'jest-expo',
   // setupFilesAfterEnv: ['./jest.setup.ts'],
   rootDir: 'src',
