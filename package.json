@@ -1,6 +1,6 @@
 {
   "name": "@kingstinct/hooks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Kingstinct Hooks Utility Library",
   "main": "index.js",
   "author": "Robert Herber",
