@@ -2,7 +2,7 @@ import * as Haptics from 'expo-haptics'
 import { useCallback, useState } from 'react'
 import { Platform } from 'react-native'
 
-export function useBooleanWithHaptics(initialValue = false) {
+function useBooleanWithHaptics(initialValue = false) {
   const [value, setValue] = useState(initialValue)
 
   const on = useCallback(() => {
@@ -21,3 +21,5 @@ export function useBooleanWithHaptics(initialValue = false) {
 
   return [value, on, off] as const
 }
+
+export default useBooleanWithHaptics

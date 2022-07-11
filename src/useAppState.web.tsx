@@ -7,6 +7,8 @@ const isPrefixed = !document.hasOwnProperty('hidden') && document.hasOwnProperty
 const VISIBILITY_CHANGE_EVENT = isPrefixed ? 'webkitvisibilitychange' : 'visibilitychange'
 const VISIBILITY_STATE_PROPERTY = isPrefixed ? 'webkitVisibilityState' : 'visibilityState'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const isAvailable = document[VISIBILITY_STATE_PROPERTY]
 
 const getCurrentState = (isFocused: boolean): AppStateStatus => {
@@ -14,6 +16,8 @@ const getCurrentState = (isFocused: boolean): AppStateStatus => {
     return isFocused ? 'active' : 'inactive'
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   switch (document[VISIBILITY_STATE_PROPERTY]) {
   case 'hidden':
   case 'prerender':

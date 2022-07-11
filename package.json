@@ -5,10 +5,11 @@
   "main": "index.js",
   "author": "Robert Herber",
   "license": "MIT",
+  "files": [ "lib" ],
   "scripts": {
     "build": "rimraf lib && node ./esbuild.js && npm run ts-types",
     "ts-types": " tsc --emitDeclarationOnly --declaration --outDir lib",
-    "ts-build": " rimraf lib && tsc --declaration",
+    "ts-build": " rimraf lib && tsc --declaration -p ./tsconfig.build.json",
     "test": "jest"
   },
   "devDependencies": {
