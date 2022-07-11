@@ -1,11 +1,13 @@
 {
   "name": "@kingstinct/hooks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Kingstinct Hooks Utility Library",
   "main": "lib/index.js",
   "author": "Robert Herber",
   "license": "MIT",
-  "files": [ "lib" ],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "rimraf lib && node ./esbuild.js && npm run ts-types",
     "ts-types": " tsc --emitDeclarationOnly --declaration --outDir lib",
