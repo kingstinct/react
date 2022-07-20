@@ -1,3 +1,6 @@
 {
-  "extends": "eslint-config-kingstinct/tsconfig.expo"
+  "extends": "eslint-config-kingstinct/tsconfig.expo",
+  "compilerOptions": {
+    "jsx":"react"
+  }
 }

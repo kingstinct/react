@@ -1,6 +1,7 @@
 import useAppState from './useAppState'
 import useBoolean from './useBoolean'
 import useBooleanWithHaptics from './useBooleanWithHaptics'
+import useDebounce from './useDebounce'
 import useDecodedToken from './useDecodedToken'
 import useEvent from './useEvent'
 import useInterval from './useInterval'
@@ -17,15 +18,16 @@ export {
   useAppState,
   useBoolean,
   useBooleanWithHaptics,
+  useDebounce,
+  useDecodedToken,
   useEvent,
+  useInterval,
+  useIsLoggedIn,
   useIsOnline,
   useIsStandalonePWA,
   useNullableState,
   usePrevious,
   useRunIfMounted,
-  useInterval,
-  useDecodedToken,
-  useIsLoggedIn,
   useToggle,
   useToggleWithHaptics,
 }
