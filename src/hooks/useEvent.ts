@@ -1,23 +1,20 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-function useEvent<T extends readonly unknown[], TRet = unknown>(handler: (...args: T) => TRet) {
-  const handlerRef = useRef<(...args: T) => void>()
+// https://gist.github.com/diegohaz/695097a06f038a707c3a1b11e4e40195
+
+type AnyFunction = (...args: readonly unknown[]) => void
+
+function useEvent<T extends AnyFunction>(handler: T) {
+  const handlerRef = useRef<AnyFunction>()
 
   // In a real implementation, this would run before layout effects
   useEffect(() => {
     handlerRef.current = handler
-  }, [handler])
+  })
 
-  return useCallback((...args: T) => {
-    // In a real implementation, this would throw if called during render
-    const fn = handlerRef.current
-
-    if (!fn) {
-      throw Error('no function registered, this should never happen')
-    }
-
-    return fn(...args)
-  }, [])
+  // eslint-disable-next-line
+  // @ts-ignore
+  return useCallback<AnyFunction>((...args) => handlerRef.current?.apply(null, args), []) as T
 }
 
 export default useEvent
