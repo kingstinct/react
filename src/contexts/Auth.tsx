@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, {
-  useEffect, useMemo, useState, createContext,
+  useEffect, useMemo, useState, createContext, PropsWithChildren,
 } from 'react'
 
 type AuthContextData = {
@@ -19,7 +19,7 @@ export const AuthContext = createContext<AuthContextData>({
 
 const AUTH_TOKEN_KEY = 'AUTH_TOKEN'
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {

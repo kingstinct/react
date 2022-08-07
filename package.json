@@ -14,9 +14,10 @@
   ],
   "scripts": {
     "build": " rimraf lib && tsc --declaration -p ./tsconfig.build.json",
-    "test": "concurrently \"yarn test-only\" \"yarn lint\"",
+    "test": "concurrently \"yarn test-only\" \"yarn lint\" \"tsc --noEmit\"",
     "test-only": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepublishOnly": "concurrently \"yarn build\" \"yarn test\""
   },
   "devDependencies": {
     "@babel/core": ">=7",
@@ -30,6 +31,7 @@
     "@types/react-native": "0.69",
     "@typescript-eslint/eslint-plugin": ">=5",
     "@typescript-eslint/parser": ">=5",
+    "concurrently": "^7.3.0",
     "eslint": ">=8",
     "eslint-config-airbnb": ">=19",
     "eslint-config-airbnb-base": ">=15",

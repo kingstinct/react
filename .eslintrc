@@ -1,6 +1,6 @@
 {
   "extends": ["eslint-config-kingstinct"],
-  "ignorePatterns": ["lib", "utils", "hooks", "contexts", "components", "primitives"],
+  "ignorePatterns": ["lib", "utils", "hooks", "contexts", "components", "primitives", "/index.js", "index.d.ts"],
   "rules": {
     "import/no-extraneous-dependencies": 0
   }

@@ -1,5 +1,5 @@
 import * as SystemUI from 'expo-system-ui'
-import React, { useEffect, useMemo } from 'react'
+import React, { PropsWithChildren, useEffect, useMemo } from 'react'
 import {
   Platform, useColorScheme,
 } from 'react-native'
@@ -44,10 +44,10 @@ type ThemeContextData = {
 
 export const ThemeContext = React.createContext<ThemeContextData>({ theme: DefaultTheme })
 
-type ThemeProviderProps = {
+type ThemeProviderProps = PropsWithChildren<{
   readonly theme: KingstinctTheme
   readonly darkTheme?: KingstinctTheme
-}
+}>
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children, theme, darkTheme,

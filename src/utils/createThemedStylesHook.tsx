@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { PropsWithChildren, useMemo } from 'react'
 import {
   Text as NativeText,
   StyleSheet,
@@ -43,7 +43,7 @@ export function createThemedStylesHook<TProps extends FactoryCustomProps, TStyle
 
 type ViewFactory<TProps extends FactoryCustomProps, T extends StyleProp<ViewStyle>> = (props: FactoryProps<TProps>) => T
 export function createThemedView<TProps extends FactoryCustomProps, TStyle extends StyleProp<ViewStyle>>(factory: ViewFactory<TProps, TStyle>) {
-  const ThemedComponent: React.FC<TProps> = ({ children, ...props }) => {
+  const ThemedComponent: React.FC<PropsWithChildren<TProps>> = ({ children, ...props }) => {
     const theme = useTheme(),
           size = useWindowDimensions(),
           insets = useSafeAreaInsets(),
@@ -61,7 +61,7 @@ export function createThemedView<TProps extends FactoryCustomProps, TStyle exten
 
 type TextFactory<TProps extends FactoryCustomProps, TStyle extends StyleProp<TextStyle>> = (props: FactoryProps<TProps>) => TStyle
 export function createThemedText<TProps extends FactoryCustomProps, TStyle extends StyleProp<TextStyle>>(factory: TextFactory<TProps, TStyle>) {
-  const ThemedComponent: React.FC<TProps> = ({ children, ...props }) => {
+  const ThemedComponent: React.FC<PropsWithChildren<TProps>> = ({ children, ...props }) => {
     const theme = useTheme(),
           size = useWindowDimensions(),
           insets = useSafeAreaInsets(),

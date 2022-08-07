@@ -10,7 +10,6 @@ type Props = Omit<RefreshControlProps, 'onRefresh' | 'refreshing'> & {
   readonly onStatusChange?: (isLoading: boolean) => void,
 }
 
-// eslint-disable-next-line prefer-arrow-callback
 export default React.forwardRef<RefreshControl, Props>(function RefetchControl({
   onRefetch, onStatusChange, ...props
 }, ref) {
@@ -35,7 +34,6 @@ export default React.forwardRef<RefreshControl, Props>(function RefetchControl({
       {...props}
       refreshing={isRefetching}
       onRefresh={onRefetchWithPull}
-
     />
   )
 })

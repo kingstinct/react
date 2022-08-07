@@ -1,8 +1,19 @@
-import React from "react"
-import { Row, Text } from "../src/primitives"
+import React from 'react'
+
+import { createThemedStylesHook } from '../src'
+import { Row, Text } from '../src/primitives'
+
+const useStyles = createThemedStylesHook(({ theme }) => ({
+  container: {
+    alignContent: 'center',
+    backgroundColor: theme.colors.background,
+  },
+}))
 
 const MyComponent = () => {
-  return <Row>
+  const styles = useStyles()
+
+  return <Row style={styles.container}>
     <Text>My text</Text>
   </Row>
 }
