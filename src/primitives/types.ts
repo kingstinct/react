@@ -1,6 +1,7 @@
+import type { PropsWithChildren } from 'react'
 import type { TextStyle, ViewStyle } from 'react-native'
 
-export type SharedProps = {
+export type SharedProps = PropsWithChildren<{
   readonly center?: boolean,
   readonly centerX?: boolean,
   readonly centerY?: boolean,
@@ -22,7 +23,7 @@ export type SharedProps = {
   readonly paddingX?: number | string,
   readonly paddingY?: number | string,
   readonly width?: number | string,
-}
+}>
 
 export type PrimitiveViewProps = SharedProps & {
   readonly spaceBetween?: boolean,
