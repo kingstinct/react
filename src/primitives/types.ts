@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import type { TextStyle, ViewStyle } from 'react-native'
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native'
 
 export type SharedProps = PropsWithChildren<{
   readonly center?: boolean,
@@ -29,7 +29,7 @@ export type PrimitiveViewProps = SharedProps & {
   readonly spaceBetween?: boolean,
   readonly spaceAround?: boolean,
   readonly spaceEvenly?: boolean,
-  readonly style?: ViewStyle,
+  readonly style?: StyleProp<ViewStyle>,
   readonly borderRadius?: number,
   readonly backgroundColor?: string,
 }
@@ -37,5 +37,5 @@ export type PrimitiveViewProps = SharedProps & {
 export type TextProps = SharedProps & {
   readonly fontSize?: number,
   readonly fontWeight?: TextStyle['fontWeight'],
-  readonly style?: TextStyle,
+  readonly style?: StyleProp<TextStyle>,
 }
