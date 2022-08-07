@@ -10,7 +10,8 @@
     "contexts",
     "hooks",
     "primitives",
-    "utils"
+    "utils",
+    "index.d.ts"
   ],
   "scripts": {
     "build": " rimraf lib && tsc --declaration -p ./tsconfig.build.json",
