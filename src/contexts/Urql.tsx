@@ -5,8 +5,9 @@ import { Provider } from 'urql'
 
 import { AuthContext } from './Auth'
 
+import type { GraphQLError } from 'graphql'
 import type { PropsWithChildren } from 'react'
-import type { CombinedError, Client } from 'urql'
+import type { CombinedError, Client, Operation } from 'urql'
 
 const DEFAULT_VALUE = {
   reloadClient: () => {},
@@ -14,16 +15,26 @@ const DEFAULT_VALUE = {
 
 export const UrqlContext = createContext(DEFAULT_VALUE)
 
-type Props = PropsWithChildren<{
-  readonly onError: (error: CombinedError) => void,
-  readonly createClient: (opts: {
-    readonly token: string | null,
-    readonly onError: (error: CombinedError) => void,
-    readonly clearToken: () => void,
-  }) => Client,
+export type CreateUrqlClient<T extends Record<string, string>> = (opts: {
+  readonly token: string | null,
+  readonly onError: (error: CombinedErrorWithExtensions<T>, operation: Operation) => void,
+  readonly clearToken: () => void,
+}) => Client
+
+type Props<T extends Record<string, string>> = PropsWithChildren<{
+  readonly onError: (error: CombinedErrorWithExtensions<T>, operation: Operation) => void,
+  readonly createClient: CreateUrqlClient<T>,
 }>
 
-const UrqlProvider: React.FC<Props> = ({ children, createClient, onError }) => {
+type CustomGraphQLError<T extends Record<string, string> = Record<string, string>> = Omit<GraphQLError, 'extensions'> & {
+  readonly extensions: T
+}
+
+type CombinedErrorWithExtensions<T extends Record<string, string> = Record<string, string>> = Omit<CombinedError, 'graphQLErrors'> & {
+  readonly graphQLErrors: readonly CustomGraphQLError<T>[];
+}
+
+function UrqlProvider<T extends Record<string, string>>({ children, createClient, onError }: Props<T>) {
   const { token, clearToken } = useContext(AuthContext)
   const [reloadClientAt, setReloadClientAt] = useState(Date.now())
 

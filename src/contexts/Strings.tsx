@@ -9,9 +9,13 @@ const DEFAULT_VALUE = {
   'Something went wrong, please try again': 'Something went wrong, please try again',
 }
 
-const StringsContext = createContext(DEFAULT_VALUE)
+const StringsContext = createContext<typeof DEFAULT_VALUE>(DEFAULT_VALUE)
 
-export const StringsProvider: React.FC<PropsWithChildren & { readonly strings: Partial<typeof DEFAULT_VALUE> }> = ({ children, strings }) => <StringsContext.Provider value={useMemo(() => ({
+type Props = PropsWithChildren<{
+  readonly strings: Partial<typeof DEFAULT_VALUE>
+}>
+
+export const StringsProvider: React.FC<Props> = ({ children, strings }) => <StringsContext.Provider value={useMemo(() => ({
   ...DEFAULT_VALUE,
   ...strings,
 }), [])}>
