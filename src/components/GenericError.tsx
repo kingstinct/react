@@ -27,15 +27,19 @@ const styles = StyleSheet.create({
   icon: { padding: 20 },
 })
 
-type OnTryAgain<T = unknown> = (online: boolean) => (Promise<T> | void);
+type OnTryAgain<T = unknown> = () => (Promise<T> | T);
+type OnTryAgainWithNetworkStatus<T = unknown> = (wasNetworkRelated: boolean) => (Promise<T> | void);
 
 type Props = {
   readonly onTryAgain?: OnTryAgain,
+  readonly onTryAgainWithNetworkStatus?: OnTryAgainWithNetworkStatus,
   readonly customMessage?: string
   readonly error: CombinedError | undefined,
 }
 
-const GenericError: React.FC<Props> = ({ onTryAgain, customMessage, error }) => {
+const GenericError: React.FC<Props> = ({
+  onTryAgain, onTryAgainWithNetworkStatus, customMessage, error,
+}) => {
   const [loading, setLoading] = useState(false),
         isOnline = useIsOnline(),
         strings = useContext(StringsContext),
@@ -50,7 +54,8 @@ const GenericError: React.FC<Props> = ({ onTryAgain, customMessage, error }) => 
   const doTryAgain = useEvent(async () => {
     setLoading(true)
     try {
-      await onTryAgain?.(!hasBeenOffline && !error?.networkError)
+      await onTryAgain?.()
+      await onTryAgainWithNetworkStatus?.(!hasBeenOffline && !error?.networkError)
     } finally {
       setLoading(false)
     }
