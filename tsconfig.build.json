@@ -3,7 +3,8 @@
   "compilerOptions": {
     "noEmit": false,
     "outDir": ".",
-    "removeComments": true
+    "removeComments": true,
+    "module": "commonjs"
   },
   "include": [ "src" ]
 }
