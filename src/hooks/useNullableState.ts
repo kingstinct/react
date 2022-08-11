@@ -1,13 +1,17 @@
 import { useCallback, useState } from 'react'
 
-function useNullableState<T = unknown>(initialValue: T | null = null): readonly [value: T | null, setValue: (value: T) => void, setNull: () => void] {
-  const [value, setValue] = useState<T | null>(initialValue)
+function useNullableState<T = unknown>(initialValue: T | null = null) {
+  const [value, setValueInternal] = useState<T | null>(initialValue)
 
-  const setNull = useCallback(() => {
-    setValue(null)
+  const reset = useCallback(() => {
+    setValueInternal(null)
   }, [])
 
-  return [value, setValue, setNull]
+  const setValue = useCallback((v: T) => {
+    setValue(v)
+  }, [])
+
+  return [value, setValue, reset] as const
 }
 
 export default useNullableState

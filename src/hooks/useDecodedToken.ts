@@ -1,12 +1,9 @@
 import jwtDecode from 'jwt-decode'
-import { useContext } from 'react'
+import { useMemo } from 'react'
 
-import { AuthContext } from '../contexts/Auth'
 
-const useDecodedToken = () => {
-  const { token } = useContext(AuthContext)
-
-  return token ? jwtDecode(token) : null
+function useDecodedToken<T>(token: string | null | undefined){
+  return useMemo(() => (token ? jwtDecode(token) as T : null), [token])
 }
 
 export default useDecodedToken
