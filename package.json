@@ -73,5 +73,9 @@
   "peerDependencies": {
     "@types/react": ">=16",
     "react": ">=16"
+  },
+  "dependencies": {
+    "ts-pattern": "^4.0.5",
+    "urql": "^2.2.3"
   }
 }
