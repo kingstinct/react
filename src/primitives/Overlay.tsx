@@ -24,6 +24,7 @@ examples:
 
 import React, { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
+import { match } from 'ts-pattern'
 
 import randomHexColor from '../utils/randomHexColor'
 
@@ -39,14 +40,24 @@ const Overlay: React.FC<OverlayProps> = ({
     alignItems: center || centerX ? 'center' : undefined,
     backgroundColor: colorize ? randomHexColor() : undefined,
     flex: fill ? 1 : undefined,
-    justifyContent: spaceBetween ? 'space-between' : spaceAround ? 'space-around' : spaceEvenly ? 'space-evenly' : center || centerY ? 'center' : undefined,
+    justifyContent: match({
+      spaceBetween, spaceAround, spaceEvenly, center, centerY,
+    })
+      .with({ spaceBetween: true }, () => 'space-between' as const)
+      .with({ spaceAround: true }, () => 'space-around' as const)
+      .with({ spaceEvenly: true }, () => 'space-evenly' as const)
+      .with({ center: true }, () => 'center' as const)
+      .with({ centerY: true }, () => 'center' as const)
+      .otherwise(() => undefined),
     marginHorizontal: marginX,
     marginVertical: marginY,
     paddingHorizontal: paddingX,
     paddingVertical: paddingY,
     ...StyleSheet.absoluteFillObject,
     ...props,
-  }), [center, centerX, centerY, colorize, fill, marginX, marginY, paddingX, paddingY, props, spaceAround, spaceBetween, spaceEvenly])
+  }), [
+    center, centerX, centerY, colorize, fill, marginX, marginY, paddingX, paddingY, props, spaceAround, spaceBetween, spaceEvenly,
+  ])
 
   return <View pointerEvents='box-none' style={[internalStyle, style]}>{children}</View>
 }

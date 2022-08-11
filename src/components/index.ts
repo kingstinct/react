@@ -1,7 +1,7 @@
-import RefetchControl from "./RefetchControl";
-import GenericError from "./GenericError";
+import GenericError from './GenericError'
+import RefetchControl from './RefetchControl'
 
 export {
   RefetchControl,
-  GenericError
+  GenericError,
 }

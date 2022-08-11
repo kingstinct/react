@@ -1,17 +1,19 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import React, {
   useContext,
-   useEffect, useMemo, useState,
+  useEffect, useMemo, useState,
 } from 'react'
-import { ActivityIndicator, Button, StyleSheet, View } from 'react-native'
+import {
+  ActivityIndicator, Button, StyleSheet, View,
+} from 'react-native'
 import { match } from 'ts-pattern'
 
-import useEvent from '../Hooks/useEvent'
-import useIsOnline from '../Hooks/useIsOnline'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import StringsContext from '../contexts/Strings'
+import useEvent from '../hooks/useEvent'
+import useIsOnline from '../hooks/useIsOnline'
+import { Text } from '../primitives'
 
 import type { CombinedError } from 'urql'
-import { Text } from '../primitives'
-import StringsContext from '../contexts/Strings'
 
 const styles = StyleSheet.create({
   activityIndicator: { marginTop: 15 },
@@ -58,9 +60,7 @@ const GenericError: React.FC<Props> = ({ onTryAgain, customMessage, error }) => 
   const message = useMemo(() => (customMessage || match({ error, hasBeenOffline })
     .with({ hasBeenOffline: true }, () => strings['You are offline'])
     .when(({ error }) => !!error?.networkError, () => strings['Network request failed'])
-    .otherwise(() => strings['Something went wrong, please try again'])), [
-    customMessage, error, hasBeenOffline,
-  ])
+    .otherwise(() => strings['Something went wrong, please try again'])), [customMessage, error, hasBeenOffline])
 
   return (
     <View style={styles.container}>

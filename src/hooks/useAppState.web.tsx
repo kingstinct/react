@@ -19,12 +19,12 @@ const getCurrentState = (isFocused: boolean): AppStateStatus => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   switch (document[VISIBILITY_STATE_PROPERTY]) {
-  case 'hidden':
-  case 'prerender':
-  case 'unloaded':
-    return 'background'
-  default:
-    return isFocused ? 'active' : 'inactive'
+    case 'hidden':
+    case 'prerender':
+    case 'unloaded':
+      return 'background'
+    default:
+      return isFocused ? 'active' : 'inactive'
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
   Text as NativeText,
   StyleSheet,
@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import useTheme from '../hooks/useTheme'
 
+import type { PropsWithChildren } from 'react'
 import type {
   ScaledSize,
   TextStyle,
@@ -37,7 +38,9 @@ export function createThemedStylesHook<TProps extends FactoryCustomProps, TStyle
       factory({
         insets, size, theme, ...props,
       } as FactoryProps<TProps>),
-    ), [theme, size, insets, props])
+    ), [
+      theme, size, insets, props,
+    ])
   }
 }
 
@@ -51,7 +54,9 @@ export function createThemedView<TProps extends FactoryCustomProps, TStyle exten
             () => factory({
               insets, size, theme, ...props,
             } as FactoryProps<TProps>),
-            [theme, size, insets, props],
+            [
+              theme, size, insets, props,
+            ],
           )
     return <View {...props} style={style}>{children}</View>
   }
@@ -69,7 +74,9 @@ export function createThemedText<TProps extends FactoryCustomProps, TStyle exten
             () => factory({
               insets, size, theme, ...props,
             } as FactoryProps<TProps>),
-            [theme, size, insets, props],
+            [
+              theme, size, insets, props,
+            ],
           )
     return <NativeText {...props} style={style}>{children}</NativeText>
   }
@@ -86,8 +93,8 @@ type OptimizedFactoryProps = {
 }
 type OptimizedFactory<TProps extends FactoryCustomProps, TIncludedProps extends ReadonlyArray<keyof OptimizedFactoryProps>, T extends StyleSheet.NamedStyles<T>> = (props: TProps & Pick<OptimizedFactoryProps, TIncludedProps>) => T | StyleSheet.NamedStyles<T>
 
-TODO 1: would probably be good to shallow memoize custom props (so users don't need to worry about memoizing)
-TODO 2: specify requirements, something in the area of:
+Maybe 1: would probably be good to shallow memoize custom props (so users don't need to worry about memoizing)
+Maybe 2: specify requirements, something in the area of:
 createStylesHook(({ theme, size, insets }) => {
 ...styles
 }, ['theme', 'size', 'insets'])

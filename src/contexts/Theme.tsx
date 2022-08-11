@@ -1,8 +1,10 @@
 import * as SystemUI from 'expo-system-ui'
-import React, { PropsWithChildren, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import {
   Platform, useColorScheme,
 } from 'react-native'
+
+import type { PropsWithChildren } from 'react'
 
 declare global {
   interface KingstinctTheme {

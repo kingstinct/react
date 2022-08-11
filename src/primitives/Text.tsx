@@ -44,18 +44,20 @@ const Text = createThemedText(({
   insets,
   style,
   ...props
-}: FactoryProps<TextProps>) => ([{
-  backgroundColor: colorize ? randomHexColor() : undefined,
-  color: theme.colors.text,
-  flex: fill ? 1 : undefined,
-  fontWeight,
-  marginHorizontal: marginX,
-  marginVertical: marginY,
-  paddingHorizontal: paddingX,
-  paddingVertical: paddingY,
-  textAlign: center || centerX ? 'center' : undefined,
-  textAlignVertical: centerY || center ? 'center' : undefined,
-  ...props,
-}, style]))
+}: FactoryProps<TextProps>) => ([
+  {
+    backgroundColor: colorize ? randomHexColor() : undefined,
+    color: theme.colors.text,
+    flex: fill ? 1 : undefined,
+    fontWeight,
+    marginHorizontal: marginX,
+    marginVertical: marginY,
+    paddingHorizontal: paddingX,
+    paddingVertical: paddingY,
+    textAlign: center || centerX ? 'center' : undefined,
+    textAlignVertical: centerY || center ? 'center' : undefined,
+    ...props,
+  }, style,
+]))
 
 export default Text

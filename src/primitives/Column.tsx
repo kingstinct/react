@@ -22,6 +22,8 @@ examples:
       </Row>
 */
 
+import { match } from 'ts-pattern'
+
 import { createThemedView } from '../utils/createThemedStylesHook'
 import randomHexColor from '../utils/randomHexColor'
 
@@ -29,16 +31,27 @@ import type { PrimitiveViewProps } from './types'
 
 const Column = createThemedView(({
   center, spaceBetween, spaceAround, spaceEvenly, centerY, centerX, fill, colorize, marginX, marginY, paddingY, paddingX, style, backgroundColor, ...props
-}: PrimitiveViewProps) => ([{
-  alignItems: center || centerX ? 'center' : undefined,
-  backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
-  flex: fill ? 1 : undefined,
-  justifyContent: spaceBetween ? 'space-between' : spaceAround ? 'space-around' : spaceEvenly ? 'space-evenly' : center || centerY ? 'center' : undefined,
-  marginHorizontal: marginX,
-  marginVertical: marginY,
-  paddingHorizontal: paddingX,
-  paddingVertical: paddingY,
-  ...props,
-}, style]))
+}: PrimitiveViewProps) => ([
+  {
+    alignItems: center || centerX ? 'center' : undefined,
+    backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
+    flex: fill ? 1 : undefined,
+    // eslint-disable-next-line no-nested-ternary
+    justifyContent: match({
+      spaceBetween, spaceAround, spaceEvenly, center, centerY,
+    })
+      .with({ spaceBetween: true }, () => 'space-between' as const)
+      .with({ spaceAround: true }, () => 'space-around' as const)
+      .with({ spaceEvenly: true }, () => 'space-evenly' as const)
+      .with({ center: true }, () => 'center' as const)
+      .with({ centerY: true }, () => 'center' as const)
+      .otherwise(() => undefined),
+    marginHorizontal: marginX,
+    marginVertical: marginY,
+    paddingHorizontal: paddingX,
+    paddingVertical: paddingY,
+    ...props,
+  }, style,
+]))
 
 export default Column

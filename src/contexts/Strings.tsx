@@ -1,4 +1,6 @@
-import React, { createContext, PropsWithChildren, useMemo } from "react";
+import React, { createContext, useMemo } from 'react'
+
+import type { PropsWithChildren } from 'react'
 
 const DEFAULT_VALUE = {
   'Try again': 'Try again',
@@ -9,13 +11,11 @@ const DEFAULT_VALUE = {
 
 const StringsContext = createContext(DEFAULT_VALUE)
 
-export const StringsProvider: React.FC<PropsWithChildren & { strings: Partial<typeof DEFAULT_VALUE> }> = ({ children, strings }) => {
-  return <StringsContext.Provider value={useMemo(() => ({
-    ...DEFAULT_VALUE,
-    ...strings
-  }), [])}>
-    {children}
-  </StringsContext.Provider>
-}
+export const StringsProvider: React.FC<PropsWithChildren & { readonly strings: Partial<typeof DEFAULT_VALUE> }> = ({ children, strings }) => <StringsContext.Provider value={useMemo(() => ({
+  ...DEFAULT_VALUE,
+  ...strings,
+}), [])}>
+  {children}
+</StringsContext.Provider>
 
 export default StringsContext

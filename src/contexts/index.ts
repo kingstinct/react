@@ -1,11 +1,11 @@
 import AuthProvider, { AuthContext } from './Auth'
-import ThemeProvider, { ThemeContext } from './Theme'
 import StringsContext from './Strings'
+import ThemeProvider, { ThemeContext } from './Theme'
 
-export { 
-  AuthProvider, 
-  AuthContext, 
-  ThemeProvider, 
+export {
+  AuthProvider,
+  AuthContext,
+  ThemeProvider,
   ThemeContext,
-  StringsContext
+  StringsContext,
 }

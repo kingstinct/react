@@ -1,9 +1,12 @@
 import React, {
-   useMemo,  createContext, PropsWithChildren, useContext, useState,
+  useMemo, createContext, useContext, useState,
 } from 'react'
-import { CombinedError, Provider, Client } from 'urql'
+import { Provider } from 'urql'
 
 import { AuthContext } from './Auth'
+
+import type { PropsWithChildren } from 'react'
+import type { CombinedError, Client } from 'urql'
 
 const DEFAULT_VALUE = {
   reloadClient: () => {},
@@ -12,11 +15,11 @@ const DEFAULT_VALUE = {
 export const UrqlContext = createContext(DEFAULT_VALUE)
 
 type Props = PropsWithChildren<{
-  onError: (error: CombinedError) => { },
-  createClient: (opts: {
-    token: string | null,
-    onError: (error: CombinedError) => { },
-    clearToken: () => void,
+  readonly onError: (error: CombinedError) => void,
+  readonly createClient: (opts: {
+    readonly token: string | null,
+    readonly onError: (error: CombinedError) => void,
+    readonly clearToken: () => void,
   }) => Client,
 }>
 
@@ -25,11 +28,11 @@ const UrqlProvider: React.FC<Props> = ({ children, createClient, onError }) => {
   const [reloadClientAt, setReloadClientAt] = useState(Date.now())
 
   const client = useMemo(() => createClient({ token, clearToken, onError }), [
-    token, clearToken, onError, createClient,reloadClientAt
+    token, clearToken, onError, createClient, reloadClientAt,
   ])
 
-  const value = useMemo(() => ({ 
-    reloadClient: () => setReloadClientAt(Date.now())
+  const value = useMemo(() => ({
+    reloadClient: () => setReloadClientAt(Date.now()),
   }), [])
 
   return (

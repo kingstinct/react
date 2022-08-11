@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, {
-  useEffect, useMemo, useState, createContext, PropsWithChildren,
+  useEffect, useMemo, useState, createContext,
 } from 'react'
+
+import type { PropsWithChildren } from 'react'
 
 type AuthContextData = {
   readonly token: string | null,

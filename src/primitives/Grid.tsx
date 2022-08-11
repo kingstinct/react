@@ -22,6 +22,8 @@ examples:
       </Row>
 */
 
+import { match } from 'ts-pattern'
+
 import { createThemedView } from '../utils/createThemedStylesHook'
 import randomHexColor from '../utils/randomHexColor'
 
@@ -34,18 +36,29 @@ const Grid = createThemedView(({
   backgroundColor,
   style,
   ...props
-}: PrimitiveViewProps) => ([{
-  alignItems: center || centerY ? 'center' : undefined,
-  backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
-  flex: fill ? 1 : undefined,
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: spaceBetween ? 'space-between' : spaceAround ? 'space-around' : spaceEvenly ? 'space-evenly' : center || centerX ? 'center' : undefined,
-  marginHorizontal: marginX,
-  marginVertical: marginY,
-  paddingHorizontal: paddingX,
-  paddingVertical: paddingY,
-  ...props,
-}, style]))
+}: PrimitiveViewProps) => ([
+  {
+    alignItems: center || centerY ? 'center' : undefined,
+    backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
+    flex: fill ? 1 : undefined,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // eslint-disable-next-line no-nested-ternary
+    justifyContent: match({
+      spaceBetween, spaceAround, spaceEvenly, center, centerX,
+    })
+      .with({ spaceBetween: true }, () => 'space-between' as const)
+      .with({ spaceAround: true }, () => 'space-around' as const)
+      .with({ spaceEvenly: true }, () => 'space-evenly' as const)
+      .with({ center: true }, () => 'center' as const)
+      .with({ centerX: true }, () => 'center' as const)
+      .otherwise(() => undefined),
+    marginHorizontal: marginX,
+    marginVertical: marginY,
+    paddingHorizontal: paddingX,
+    paddingVertical: paddingY,
+    ...props,
+  }, style,
+]))
 
 export default Grid

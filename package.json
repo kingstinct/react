@@ -49,6 +49,7 @@
     "eslint-plugin-react-native": ">=4",
     "eslint-plugin-react-native-a11y": ">=3",
     "eslint-plugin-sort-keys-fix": ">=1",
+    "eslint-plugin-unicorn": "^43.0.2",
     "eslint-plugin-yml": ">=1",
     "expo": ">=45",
     "expo-application": "^4.1.0",
