@@ -8,7 +8,7 @@ function useNullableState<T = unknown>(initialValue: T | null = null) {
   }, [])
 
   const setValue = useCallback((v: T) => {
-    setValue(v)
+    setValueInternal(v)
   }, [])
 
   return [value, setValue, reset] as const
