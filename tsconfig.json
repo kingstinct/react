@@ -4,5 +4,6 @@
     "jsx":"react",
     "target": "ES6",
     "strict": false
-  }
+  },
+  "exclude": [ "example-app" ]
 }

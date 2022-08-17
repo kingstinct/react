@@ -1,0 +1,6 @@
+{
+  "extends": ["eslint-config-kingstinct"],
+  "rules": {
+    "import/no-extraneous-dependencies": 0
+  }
+}

@@ -9,3 +9,5 @@ node_modules
 index.js
 index.d.ts
 .expo
+/yarn-error.log
+/stories

@@ -19,3 +19,10 @@ We believe this is a better approach than the alternatives:
 - Using one single utility library for everything, which would introduce unnecessary dependencies
 - Using lots of micro-libs. Micro-libs does have it's advantages, but is harder to maintain and means loosing oversight of the dependencies in a project.
 - Copy pasting between projects :)
+
+
+
+
+
+# Storybooks and Expo
+Currently the Storybooks implementation works for web and the example-app works with Expo for mobile.
