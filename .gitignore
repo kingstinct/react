@@ -8,3 +8,4 @@ node_modules
 /utils
 index.js
 index.d.ts
+.expo
