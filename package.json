@@ -41,6 +41,7 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^28.1.4",
     "@types/react": "18",
+    "react-native-reanimated": "2.6.0",
     "@types/react-native": "0.69",
     "@typescript-eslint/eslint-plugin": ">=5",
     "@typescript-eslint/parser": ">=5",
@@ -90,10 +91,10 @@
   },
   "peerDependencies": {
     "@types/react": ">=16",
-    "react": ">=16"
+    "react": ">=16",
+    "react-native-reanimated": ">=2"
   },
   "dependencies": {
-    "react-native-reanimated": "2.6.0",
     "ts-pattern": "^4.0.5",
     "urql": "^2.2.3"
   }

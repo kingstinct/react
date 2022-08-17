@@ -1,3 +1,4 @@
+import useAddSnackbar from './useAddSnackbar'
 import useAppState from './useAppState'
 import useBoolean from './useBoolean'
 import useBooleanWithHaptics from './useBooleanWithHaptics'
@@ -16,6 +17,7 @@ import useToggleWithHaptics from './useToggleWithHaptics'
 
 export {
   useAppState,
+  useAddSnackbar,
   useBoolean,
   useBooleanWithHaptics,
   useDebounce,
