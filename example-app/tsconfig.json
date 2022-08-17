@@ -1,11 +1,11 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@kingstinct/utils": [ "../src/index.ts" ],
-      "@kingstinct/utils/contexts/Snackbars": [ "../src/contexts/Snackbars.tsx" ]
+      "@kingstinct/react": [ "../src/index.ts" ],
+      "@kingstinct/react/*": [ "../src/*" ],
+      "@kingstinct/react/contexts/Snackbars": [ "../src/contexts/Snackbars.tsx" ]
     }
   }
 }

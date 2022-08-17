@@ -1,4 +1,5 @@
 const glob = require('glob-to-regexp')
+const { getDefaultConfig } = require('metro-config')
 const blacklist = require('metro-config/src/defaults/exclusionList')
 const path = require('path')
 
@@ -19,10 +20,16 @@ function getBlacklist() {
   return blacklist(nodeModuleDirs)
 }
 
+const { resolver: defaultResolver } = getDefaultConfig.getDefaultValues()
+
 module.exports = {
   resolver: {
     blocklist: getBlacklist(),
     resolverMainFields: ['browser', 'react-native', 'main'],
+    sourceExts: [
+      ...defaultResolver.sourceExts,
+      'cjs',
+    ],
   },
   watchFolders: [path.resolve(__dirname, '..')],
   transformer: {
