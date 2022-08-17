@@ -8,7 +8,10 @@ module.exports = {
       {
         extensions: ['.js', '.ts', '.tsx'],
         alias: {
-          '@kingstinct/react/contexts/Snackbars': '../src/contexts/Snackbars',
+          '@kingstinct/react/contexts/Snackbar': '../src/contexts/Snackbar',
+          '@kingstinct/react/components/SnackbarComponent': '../src/components/SnackbarComponent',
+          '@kingstinct/react/components/SnackbarPresentationView': '../src/components/SnackbarPresentationView',
+          '@kingstinct/react/hooks/useAddSnackbar': '../src/hooks/useAddSnackbar',
           '@kingstinct/react': '../src/index',
           'react': './node_modules/react',
           'react-native': './node_modules/react-native',

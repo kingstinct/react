@@ -5,7 +5,9 @@
     "paths": {
       "@kingstinct/react": [ "../src/index.ts" ],
       "@kingstinct/react/*": [ "../src/*" ],
-      "@kingstinct/react/contexts/Snackbars": [ "../src/contexts/Snackbars.tsx" ]
+      "@kingstinct/react/contexts/Snackbar": [ "../src/contexts/Snackbar.tsx" ],
+      "@kingstinct/react/hooks/useAddSnackbar": [ "../src/hooks/useAddSnackbar.tsx" ],
+      "@kingstinct/react/components/SnackbarComponent": [ "../src/components/SnackbarComponent.tsx" ]
     }
   }
 }

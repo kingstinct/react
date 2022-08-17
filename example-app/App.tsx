@@ -1,7 +1,10 @@
+/* eslint-disable import/no-unresolved */
+import DefaultSnackbarComponent from '@kingstinct/react/components/SnackbarComponent'
+import SnackbarPresentationView from '@kingstinct/react/components/SnackbarPresentationView'
 import {
-  DefaultSnackbarComponent, SnackbarProvider, SnackbarView, useAddSnackbar,
-// eslint-disable-next-line import/no-unresolved
-} from '@kingstinct/react/contexts/Snackbars'
+  SnackbarProvider,
+} from '@kingstinct/react/contexts/Snackbar'
+import useAddSnackbar from '@kingstinct/react/hooks/useAddSnackbar'
 import { StatusBar } from 'expo-status-bar'
 import React, {
   useEffect, useRef,
@@ -10,7 +13,7 @@ import {
   Button, Text, View,
 } from 'react-native'
 
-import type { SnackbarComponentProps } from '@kingstinct/react/contexts/Snackbars'
+import type { SnackbarComponentProps } from '@kingstinct/react/components/SnackbarComponent'
 
 type MyData = {
   readonly 'yo': string
@@ -65,7 +68,7 @@ export default function App() {
         <StatusBar style='auto' />
       </View>
       <Button title='Should be pressable' onPress={() => alert('pressed')}></Button>
-      <SnackbarView Component={CustomSnackbar} style={{ paddingBottom: 200 }} />
+      <SnackbarPresentationView Component={CustomSnackbar} style={{ paddingBottom: 200 }} />
     </SnackbarProvider>
   )
 }

@@ -9,7 +9,9 @@ module.exports = {
       {
         extensions: ['.js', '.ts', '.tsx'],
         alias: {
-          '@kingstinct/react/contexts/Snackbars': '../src/contexts/Snackbars',
+          '@kingstinct/react/contexts/Snackbar': '../src/contexts/Snackbar',
+          '@kingstinct/react/components/SnackbarComponent': '../src/components/SnackbarComponent',
+          '@kingstinct/react/hooks/useAddSnackbar': '../src/hooks/useAddSnackbar',
           '@kingstinct/react': '../src/index',
           '@kingstinct/react/utils/getRandomID': '../src/utils/getRandomID',
           'react': './node_modules/react',
