@@ -20,7 +20,12 @@
     "lint": "eslint .",
     "prepublishOnly": "concurrently \"yarn build\" \"yarn test\"",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "release-it"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@babel/core": ">=7",
@@ -84,6 +89,7 @@
     "react-native-safe-area-context": "^4.3.1",
     "react-native-web": "^0.18.7",
     "react-test-renderer": "17",
+    "release-it": "^15.3.0",
     "require-from-string": "^2.0.2",
     "rimraf": "^3.0.2",
     "ts-jest": "27",
