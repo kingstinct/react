@@ -2,7 +2,7 @@ import React, {
   useCallback,
 } from 'react'
 import {
-  Button, StyleSheet, Text, View,
+  StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native'
 import Animated, {
   FadeInUp, FadeOutDown, SequencedTransition,
@@ -13,13 +13,26 @@ import type {
   StyleProp, ViewStyle, ColorValue, TextStyle,
 } from 'react-native'
 
+const DEFAULT_BACKGROUND_COLOR = '#323232',
+      DEFAULT_BUTTON_TEXT_COLOR = '#B28FF0',
+      DEFAULT_TEXT_COLOR = '#CDCDCD'
+
 const styles = StyleSheet.create({
+  buttonText: {
+    color: DEFAULT_BUTTON_TEXT_COLOR,
+    fontWeight: '500',
+    padding: 8,
+    paddingLeft: 16,
+    textAlign: 'right',
+    textTransform: 'uppercase',
+  },
   snackbar: {
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
+    backgroundColor: DEFAULT_BACKGROUND_COLOR,
+    paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 5,
     margin: 10,
+    minHeight: 48,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -32,6 +45,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
+  },
+  snackbarText: {
+    color: DEFAULT_TEXT_COLOR,
   },
   snackbarButtonWrapper: {
     flexDirection: 'row',
@@ -48,7 +64,9 @@ export type SnackbarComponentProps<TMap extends Record<string, unknown> = Record
 }
 
 export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
+  readonly backgroundColor?: ColorValue,
   readonly buttonColor?: ColorValue,
+  readonly buttonTextStyle?: StyleProp<TextStyle>,
   readonly textStyle?: StyleProp<TextStyle>,
   readonly style?: StyleProp<ViewStyle>,
   readonly entering?: typeof FadeInUp | null,
@@ -59,17 +77,26 @@ export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
 const DEFAULT_ANIMATION_DURATION = 250
 
 export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> = React.memo(({
-  snackbarConfig, doDismiss, textStyle, buttonColor, id, style, entering, layout, exiting,
+  snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting,
 }) => {
-  const renderButton = useCallback((a: Action) => <Button
+  const renderButton = useCallback((a: Action, index: number) => (
+    <TouchableOpacity
       key={a.key || a.label}
-      color={buttonColor}
       onPress={() => {
         doDismiss(id)
         a.onPress?.(a)
       }}
-      title={a.label}
-  ></Button>, [id])
+    >
+      <Text style={[
+        styles.buttonText,
+        buttonTextStyle,
+        buttonColor ? { color: buttonColor } : null,
+        index === 0 ? null : { marginLeft: 16 },
+      ]}>
+        {a.label}
+      </Text>
+    </TouchableOpacity>
+  ), [id])
 
   return <Animated.View
     entering={entering ?? FadeInUp.duration(DEFAULT_ANIMATION_DURATION)}
@@ -77,8 +104,8 @@ export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> =
     exiting={exiting ?? FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)}
   >
 
-    <View style={[styles.snackbar, style]}>
-      <Text style={textStyle}>{snackbarConfig.title}</Text>
+    <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
+      <Text style={[styles.snackbarText, textStyle]}>{snackbarConfig.title}</Text>
       <View style={styles.snackbarButtonWrapper}>
         { snackbarConfig.actions?.map(renderButton) }
       </View>

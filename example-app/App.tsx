@@ -54,9 +54,10 @@ const Inner = () => {
 }
 
 const CustomSnackbar: React.FC<SnackbarComponentProps<MyData>> = (props) => <DefaultSnackbarComponent {...props}
-  style={{ backgroundColor: 'red' }}
+  backgroundColor='#333'
   textStyle={{ color: 'white' }}
-  buttonColor='pink' />
+  buttonColor='pink'
+  />
 
 export default function App() {
   return (

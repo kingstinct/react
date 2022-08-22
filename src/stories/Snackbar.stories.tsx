@@ -9,8 +9,9 @@ export default {
   title: 'Example/Snackbar',
   component: DefaultSnackbarComponent,
   argTypes: {
+    backgroundColor: { control: 'color' },
     buttonColor: { control: 'color' },
-    textColor: { control: 'color' },
+    textColor: { control: 'color', description: '`ColorValue`' },
     doDismiss: { action: 'doDismiss' },
   },
   parameters: {
@@ -30,12 +31,13 @@ export const Snickers = Template.bind({})
 
 // eslint-disable-next-line functional/immutable-data
 Snickers.args = {
-  // 'style: { backgroundColor: 'black' },
-  buttonColor: 'red',
+  backgroundColor: '#eee',
   textColor: 'purple',
-  snackbarConfig: { title: 'hello', actions: [{ label: 'ok' }] },
   textStyle: { },
-  style: { backgroundColor: '#eee' },
+  style: { },
+  buttonColor: 'red',
+  buttonTextStyle: { },
+  snackbarConfig: { title: 'hello', actions: [{ label: 'ok' }] },
 } as Partial<DefaultSnackbarComponentProps>
 
 // eslint-disable-next-line functional/immutable-data
