@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useState } from 'react'
 import { Button, Text, View } from 'react-native'
@@ -18,6 +19,8 @@ import Column from '../primitives/Column'
 import Row from '../primitives/Row'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
+
+const Stack = createNativeStackNavigator()
 
 const CustomSnackbarComponent: React.FC<SnackbarComponentProps> = (props) => (
   <DefaultSnackbarComponent
@@ -98,8 +101,9 @@ export default function App() {
       <SharedPortalAreaProvider>
         <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
           <StatusBar style='auto' />
-
-          <Body />
+          <Stack.Navigator>
+            <Stack.Screen name='Body' component={Body} />
+          </Stack.Navigator>
         </StringsProvider>
       </SharedPortalAreaProvider>
     </SnackbarProvider>
