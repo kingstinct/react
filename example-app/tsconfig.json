@@ -5,9 +5,10 @@
     "paths": {
       "@kingstinct/react": [ "../src/index.ts" ],
       "@kingstinct/react/*": [ "../src/*" ],
-      "@kingstinct/react/contexts/Snackbar": [ "../src/contexts/Snackbar.tsx" ],
-      "@kingstinct/react/hooks/useAddSnackbar": [ "../src/hooks/useAddSnackbar.tsx" ],
-      "@kingstinct/react/components/SnackbarComponent": [ "../src/components/SnackbarComponent.tsx" ]
+      "@kingstinct/react/components/*": [ "../src/components/*" ],
+      "@kingstinct/react/contexts/*": [ "../src/contexts/*" ],
+      "@kingstinct/react/hooks/*": [ "../src/hooks/*" ],
+      "@kingstinct/react/primitives/*": [ "../src/primitives/*" ],
     }
   }
 }

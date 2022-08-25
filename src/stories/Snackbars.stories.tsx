@@ -1,4 +1,3 @@
-import { within, userEvent } from '@storybook/testing-library'
 import React from 'react'
 
 import Snackbars from './Snackbars'
@@ -14,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof Snackbars>
 
-const Template: ComponentStory<typeof Snackbars> = (args) => <Snackbars />
+const Template: ComponentStory<typeof Snackbars> = () => <Snackbars />
 
 export const Snackis = Template.bind({})
 // eslint-disable-next-line functional/immutable-data

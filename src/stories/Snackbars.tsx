@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 
 import React, {
-  useEffect, useRef,
+  useEffect, useRef, useState,
 } from 'react'
 import {
   Button, Text, View,
@@ -11,6 +11,8 @@ import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import SnackbarPresentationView from '../components/SnackbarPresentationView'
 import { SnackbarProvider } from '../contexts/Snackbar'
 import useAddSnackbar from '../hooks/useAddSnackbar'
+import useAlert from '../hooks/useAlert.web'
+import useConfirm from '../hooks/useConfirm.web'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
 
@@ -58,10 +60,19 @@ const CustomSnackbar: React.FC<SnackbarComponentProps<MyData>> = (props) => <Def
   buttonColor='pink' />
 
 export default function SnackbarsStory() {
+  const alert = useAlert()
+  const confirm = useConfirm()
+  const [confirmResponse, setConfirmResponse] = useState<boolean>()
   return (
     <SnackbarProvider>
       <Inner></Inner>
-      <Button title='Should be pressable' onPress={() => alert('pressed')}></Button>
+      <Button title='Open an alert' onPress={async () => alert('This is an alert', 'This is the message')}></Button>
+
+      <View style={{ height: 16 }} />
+
+      <Button title='Open a confirmation dialog' onPress={async () => setConfirmResponse(await confirm('This is a confirmation dialog', 'This is the message'))}></Button>
+      <Text>Response from confirmation dialog: {confirmResponse}</Text>
+
       <SnackbarPresentationView Component={CustomSnackbar} style={{ paddingBottom: 200 }} />
     </SnackbarProvider>
   )

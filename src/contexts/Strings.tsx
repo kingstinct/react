@@ -7,6 +7,8 @@ const DEFAULT_VALUE = {
   'You are offline': 'You are offline',
   'Network request failed': 'Network request failed',
   'Something went wrong, please try again': 'Something went wrong, please try again',
+  'Cancel': 'Cancel',
+  'OK': 'OK',
 }
 
 const StringsContext = createContext<typeof DEFAULT_VALUE>(DEFAULT_VALUE)
