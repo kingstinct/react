@@ -30,6 +30,7 @@ const SnackbarContextDefault = {
   snackbarsToShow: [] as readonly SnackbarWithId[],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   addSnackbar: <TMap extends Record<string, unknown> = Record<string, unknown>, T extends keyof TMap = keyof TMap>(snackbarConfig: SnackbarConfig<TMap, T>) => {
+    // eslint-disable-next-line no-console
     console.warn('[@kingstinct/react] SnackbarContext not initialized, please wrap the app in SnackbarProvider')
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,6 +70,7 @@ export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
     if (!hasWarned) {
       setImmediate(() => {
         if (timeouts.current.size === 0) {
+          // eslint-disable-next-line no-console
           console.warn('[@kingstinct/react] Snackbar added but not shown, make sure SnackbarView is present (or that you\'re calling snackbarWasPresented if rolling your own).')
           hasWarned = true
         }

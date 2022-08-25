@@ -3,7 +3,7 @@ import React from 'react'
 import useEvent from '../src/hooks/useEvent'
 
 export const useOnClick = () => {
-  const testing = useEvent((a: string) => {
+  const testing = useEvent(() => {
 
   })
 
@@ -23,7 +23,7 @@ export const useRender = () => {
 }
 
 export const useOnClickWithPromise = () => {
-  const testing = useEvent(async (a: number) => new Promise<number>((resolve, reject) => {
+  const testing = useEvent(async (a: number) => new Promise<number>((resolve) => {
     setTimeout(() => {
       resolve(a)
     }, 1000)

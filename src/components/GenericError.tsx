@@ -64,6 +64,7 @@ const GenericError: React.FC<Props> = ({
   // eslint-disable-next-line no-nested-ternary
   const message = useMemo(() => (customMessage || match({ error, hasBeenOffline })
     .with({ hasBeenOffline: true }, () => strings['You are offline'])
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     .when(({ error }) => !!error?.networkError, () => strings['Network request failed'])
     .otherwise(() => strings['Something went wrong, please try again'])), [customMessage, error, hasBeenOffline])
 
