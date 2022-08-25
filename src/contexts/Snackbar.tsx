@@ -26,13 +26,17 @@ type SnackbarWithId = {
   readonly id: string,
 }
 
+export type AddSnackbarFn = <TMap extends Record<string, unknown> = Record<string, unknown>, T extends keyof TMap = keyof TMap>(snackbarConfig: SnackbarConfig<TMap, T>) => void
+
+const addSnackbarDefault: AddSnackbarFn = () => {
+  // eslint-disable-next-line no-console
+  console.warn('[@kingstinct/react] SnackbarContext not initialized, please wrap the app in SnackbarProvider')
+}
+
 const SnackbarContextDefault = {
   snackbarsToShow: [] as readonly SnackbarWithId[],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addSnackbar: <TMap extends Record<string, unknown> = Record<string, unknown>, T extends keyof TMap = keyof TMap>(snackbarConfig: SnackbarConfig<TMap, T>) => {
-    // eslint-disable-next-line no-console
-    console.warn('[@kingstinct/react] SnackbarContext not initialized, please wrap the app in SnackbarProvider')
-  },
+  addSnackbar: addSnackbarDefault,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   removeSnackbar: (id: string) => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -56,7 +60,7 @@ export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
   const [snackbars, setSnackbars] = useState<readonly SnackbarWithId[]>([])
   const timeouts = useRef(new Map<string, number>())
 
-  const addSnackbar = useCallback(function addSnackbar<TMap extends Record<string, unknown> = Record<string, unknown>, T extends keyof TMap = keyof TMap>(snackbarConfig: SnackbarConfig<TMap, T>) {
+  const addSnackbar = useCallback<AddSnackbarFn>((snackbarConfig) => {
     setSnackbars((s) => [
       ...s, {
         snackbarConfig: {
