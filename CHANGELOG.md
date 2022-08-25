@@ -1,5 +1,12 @@
 
 
+# [0.9.0](https://github.com/Kingstinct/react/compare/v0.8.0...v0.9.0) (2022-08-25)
+
+
+### Features
+
+* add snackbar onShow fn ([c54a991](https://github.com/Kingstinct/react/commit/c54a991d79c02a1ca99476a69b63fb346243cf32))
+
 # [0.8.0](https://github.com/Kingstinct/react/compare/v0.7.0...v0.8.0) (2022-08-25)
 
 
