@@ -1,15 +1,21 @@
 import { PortalProvider } from '@gorhom/portal'
+import { nanoid } from 'nanoid'
 import React, {
-  useCallback, useContext, useMemo, useState,
+  useCallback, useContext, useEffect, useMemo, useState,
 } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import NativePortal from '../components/NativePortal'
 
 import type { PropsWithChildren } from 'react'
-import type { LayoutChangeEvent, LayoutRectangle } from 'react-native'
+import type {
+  LayoutChangeEvent, LayoutRectangle, ViewStyle,
+  StyleProp,
+  Insets,
+} from 'react-native'
 
-const SharedPortalAreaContext = React.createContext({
+const SharedPortalAreaContextDefaultValue = {
   insets: {
     top: 0,
     bottom: 0,
@@ -20,11 +26,18 @@ const SharedPortalAreaContext = React.createContext({
     width: Dimensions.get('window').width,
     height: 0,
   },
-  setInsets: (insets: { readonly top: number, readonly bottom: number, readonly left: number, readonly right: number }) => {},
+  pushInset: (insets: InsetsWithId) => {},
+  removeInset: (id: string) => {},
   setSize: (size: LayoutRectangle) => {},
-})
+}
 
-export const SharedPortalAreaProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export const SharedPortalAreaContext = React.createContext(SharedPortalAreaContextDefaultValue)
+
+type InsetsWithId = Required<Insets> & {readonly id: string}
+
+export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly insets?: Insets}>> = ({ children, insets }) => {
+  const safeAreaInsets = useSafeAreaInsets()
+  const defaultInsets = insets ? { ...safeAreaInsets, insets } : safeAreaInsets
   const [{ width, height }, setSize] = useState<LayoutRectangle>({
     width: Dimensions.get('window').width,
     height: 0,
@@ -32,18 +45,18 @@ export const SharedPortalAreaProvider: React.FC<PropsWithChildren> = ({ children
     y: 0,
   })
 
-  const [insets, setInsets] = useState({
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  })
+  const [allCustomInsets, setInsets] = useState<readonly InsetsWithId[]>([])
 
-  const value = useMemo(() => ({
-    insets, size: { width, height }, setInsets, setSize,
+  const value = useMemo<typeof SharedPortalAreaContextDefaultValue>(() => ({
+    insets: allCustomInsets.at(-1) || defaultInsets,
+    size: { width, height },
+    setInsets,
+    setSize,
+    removeInset: (id: string) => setInsets((prev) => prev.filter(({ id: prevId }) => prevId !== id)),
+    pushInset: (i: InsetsWithId) => {
+      setInsets((prev) => [...prev, i])
+    },
   }), [insets, width, height])
-
-  console.log('SharedPortalAreaProvider')
 
   return <PortalProvider>
     <SharedPortalAreaContext.Provider value={value}>
@@ -52,20 +65,41 @@ export const SharedPortalAreaProvider: React.FC<PropsWithChildren> = ({ children
   </PortalProvider>
 }
 
-export const SharedPortalPresentationArea = ({ children }) => {
-  const { setSize, insets } = useContext(SharedPortalAreaContext)
+// explicitely set all insets
+export const useUpdateSharedPortalAreaInsets = (insets: Required<Insets>) => {
+  const { pushInset, removeInset } = useContext(SharedPortalAreaContext)
 
-  console.log('SharedPortalPresentationArea')
+  useEffect(() => {
+    const id = nanoid()
+    pushInset({ ...insets, id })
+    return () => removeInset(id)
+  }, [insets])
+}
+
+// set insets, but with safe area as default
+export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets) => {
+  const safeAreaInsets = useSafeAreaInsets()
+  const { pushInset, removeInset } = useContext(SharedPortalAreaContext)
+
+  useEffect(() => {
+    const id = nanoid()
+    pushInset({ ...safeAreaInsets, ...insets, id })
+    return () => removeInset(id)
+  }, [safeAreaInsets, insets])
+}
+
+export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly style?: StyleProp<ViewStyle> }>> = ({ children, style }) => {
+  const { setSize, insets } = useContext(SharedPortalAreaContext)
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {
     setSize(event.nativeEvent.layout)
   }, [])
 
-  return <NativePortal>
-    <View pointerEvents='box-none' style={[StyleSheet.absoluteFill, insets, { justifyContent: 'flex-end' }]}>
-      <View onLayout={onLayout} style={{ backgroundColor: 'rgba(0,255,0,0.1)' }} pointerEvents='box-none'>
-        { children }
-      </View>
+  return <NativePortal insets={insets}>
+
+    <View onLayout={onLayout} style={[style]} pointerEvents='box-none'>
+      { children }
     </View>
+
   </NativePortal>
 }
