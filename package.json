@@ -1,6 +1,6 @@
 {
   "name": "@kingstinct/react",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Kingstinct Hooks Utility Library",
   "author": "Robert Herber",
   "license": "MIT",
@@ -43,6 +43,7 @@
     "@react-native-community/netinfo": "^9.3.0",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
+    "@release-it/conventional-changelog": "^5.1.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -106,6 +107,17 @@
     "rimraf": "^3.0.2",
     "ts-jest": "27",
     "typescript": ">=4"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
   },
   "engines": {
     "node": ">=10"
