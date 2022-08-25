@@ -1,5 +1,12 @@
 
 
+# [0.10.0](https://github.com/Kingstinct/react/compare/v0.9.0...v0.10.0) (2022-08-25)
+
+
+### Features
+
+* add inset hook enable flags ([e8d907a](https://github.com/Kingstinct/react/commit/e8d907aa8b86d20b7f1efa63834cff9c4759782d))
+
 # [0.9.0](https://github.com/Kingstinct/react/compare/v0.8.0...v0.9.0) (2022-08-25)
 
 
