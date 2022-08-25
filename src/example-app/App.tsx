@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useContext, useState } from 'react'
-import { Button, Text, View } from 'react-native'
+import { Button, Text } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ActivityIndicator, Switch } from 'react-native-paper'
 import Animated, {
-  FadeInUp, CurvedTransition, FadeIn, FadeOut,
+  CurvedTransition,
 } from 'react-native-reanimated'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
