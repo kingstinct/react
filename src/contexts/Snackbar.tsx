@@ -18,6 +18,7 @@ export type SnackbarConfig<TMap extends Record<string, unknown> = Record<string,
   readonly timeout?: number,
   readonly actions?: ReadonlyArray<Action>,
   readonly type?: T,
+  readonly onShow?: () => void
   readonly data?: TMap[T],
 }
 
@@ -90,6 +91,7 @@ export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
     const snackbar = snackbars.find((s) => s.id === id)
 
     if (!timeouts.current.has(id)) {
+      snackbar?.snackbarConfig.onShow?.()
       timeouts.current.set(id, setTimeout(() => {
         removeSnackbar(id)
         timeouts.current.delete(id)
