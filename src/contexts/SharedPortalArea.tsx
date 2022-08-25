@@ -48,7 +48,8 @@ export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly inse
   const [allCustomInsets, setInsets] = useState<readonly InsetsWithId[]>([])
 
   const value = useMemo<typeof SharedPortalAreaContextDefaultValue>(() => ({
-    insets: allCustomInsets.at(-1) || defaultInsets,
+    // eslint-disable-next-line unicorn/prefer-at
+    insets: allCustomInsets[allCustomInsets.length - 1] || defaultInsets,
     size: { width, height },
     setInsets,
     setSize,
@@ -66,25 +67,31 @@ export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly inse
 }
 
 // explicitely set all insets
-export const useUpdateSharedPortalAreaInsets = (insets: Required<Insets>) => {
+export const useUpdateSharedPortalAreaInsets = (insets: Required<Insets>, enable = true) => {
   const { pushInset, removeInset } = useContext(SharedPortalAreaContext)
 
   useEffect(() => {
-    const id = nanoid()
-    pushInset({ ...insets, id })
-    return () => removeInset(id)
+    if (enable) {
+      const id = nanoid()
+      pushInset({ ...insets, id })
+      return () => removeInset(id)
+    }
+    return () => {}
   }, [insets])
 }
 
 // set insets, but with safe area as default
-export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets) => {
+export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets, enable = true) => {
   const safeAreaInsets = useSafeAreaInsets()
   const { pushInset, removeInset } = useContext(SharedPortalAreaContext)
 
   useEffect(() => {
-    const id = nanoid()
-    pushInset({ ...safeAreaInsets, ...insets, id })
-    return () => removeInset(id)
+    if (enable) {
+      const id = nanoid()
+      pushInset({ ...safeAreaInsets, ...insets, id })
+      return () => removeInset(id)
+    }
+    return () => {}
   }, [safeAreaInsets, insets])
 }
 
