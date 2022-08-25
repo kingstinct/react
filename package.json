@@ -109,6 +109,7 @@
     "react-native-reanimated": ">=2"
   },
   "dependencies": {
+    "@gorhom/portal": "^1.0.14",
     "ts-pattern": "^4.0.5",
     "urql": ">=2"
   }

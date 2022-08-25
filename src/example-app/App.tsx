@@ -1,12 +1,14 @@
 /* eslint-disable import/no-unresolved */
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useState } from 'react'
-import { Button, Text } from 'react-native'
+import { Button, Text, View } from 'react-native'
 import { Switch } from 'react-native-paper'
+import Animated, { FadeInUp, SequencedTransition } from 'react-native-reanimated'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import SnackbarPresentationView from '../components/SnackbarPresentationView'
+import { SharedPortalAreaProvider, SharedPortalPresentationArea } from '../contexts/SharedPortalArea'
 import { SnackbarProvider } from '../contexts/Snackbar'
 import { StringsProvider } from '../contexts/Strings'
 import useAddSnackbar from '../hooks/useAddSnackbar'
@@ -49,6 +51,8 @@ const Body: React.FC = () => {
 
   const SnackbarComponent = useCallback(hasCustomSnackbar ? CustomSnackbarComponent : DefaultSnackbarComponent, [hasCustomSnackbar])
 
+  console.log('App')
+
   return (
     <SafeAreaProvider>
       <Column fill padding={16} spaceAround>
@@ -79,7 +83,11 @@ const Body: React.FC = () => {
 
         <Text>Response from confirmation dialog: {confirmationDialogResponse?.toString()}</Text>
       </Column>
-      <SnackbarPresentationView Component={SnackbarComponent} style={{ paddingBottom: 220 }} />
+      <SharedPortalPresentationArea>
+        <View style={{ height: 100, width: 100, backgroundColor: 'red' }} />
+        <SnackbarPresentationView Component={SnackbarComponent} />
+        <View style={{ height: 100, width: 100, backgroundColor: 'red' }}></View>
+      </SharedPortalPresentationArea>
     </SafeAreaProvider>
   )
 }
@@ -87,11 +95,13 @@ const Body: React.FC = () => {
 export default function App() {
   return (
     <SnackbarProvider>
-      <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
-        <StatusBar style='auto' />
+      <SharedPortalAreaProvider>
+        <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
+          <StatusBar style='auto' />
 
-        <Body />
-      </StringsProvider>
+          <Body />
+        </StringsProvider>
+      </SharedPortalAreaProvider>
     </SnackbarProvider>
   )
 }

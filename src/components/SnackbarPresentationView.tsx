@@ -14,7 +14,9 @@ import type {
 } from 'react-native'
 
 const styles = StyleSheet.create({
-  snackbarPresentationView: { justifyContent: 'flex-start', flexDirection: 'column-reverse' },
+  snackbarPresentationView: {
+    justifyContent: 'flex-start', flexDirection: 'column-reverse',
+  },
   snackbar: {
     backgroundColor: 'white',
     paddingHorizontal: 20,
@@ -46,7 +48,9 @@ type SnackbarPresentationViewProps = {
 }
 
 const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
-  Component = DefaultSnackbarComponent, style, isVisibleToUser = true,
+  Component = DefaultSnackbarComponent,
+  isVisibleToUser = true,
+  style,
 }) => {
   const { snackbarWasPresented, snackbarsToShow, removeSnackbar } = React.useContext(SnackbarContext)
 
@@ -56,10 +60,12 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
     }
   }, [snackbarsToShow, snackbarWasPresented])
 
+  console.log('snackbarsToShow', snackbarsToShow)
+
   return (
     <View
       pointerEvents='box-none'
-      style={[StyleSheet.absoluteFill, styles.snackbarPresentationView, style]}
+      style={[styles.snackbarPresentationView, style]}
     >
       { snackbarsToShow.map((i, index) => <Component
           doDismiss={removeSnackbar}
