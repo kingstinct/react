@@ -17,7 +17,7 @@ const DEFAULT_BACKGROUND_COLOR = '#323232',
       DEFAULT_BUTTON_TEXT_COLOR = '#B28FF0',
       DEFAULT_TEXT_COLOR = '#CDCDCD'
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   buttonText: {
     color: DEFAULT_BUTTON_TEXT_COLOR,
     fontWeight: '500',
