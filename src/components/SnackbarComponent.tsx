@@ -77,6 +77,8 @@ export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
 
 const DEFAULT_ANIMATION_DURATION = 250
 
+const EMPTY_OBJECT = {}
+
 export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> = React.memo(({
   snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, textColor,
 }) => {
@@ -111,7 +113,7 @@ export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> =
     >
 
       <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
-        <Text style={[styles.snackbarText, textStyle, { color: textColor }]}>{snackbarConfig.title}</Text>
+        <Text style={[styles.snackbarText, textStyle, textColor ? { color: textColor } : EMPTY_OBJECT]}>{snackbarConfig.title}</Text>
         <View style={styles.snackbarButtonWrapper}>
           { snackbarConfig.actions?.map(renderButton) }
         </View>
