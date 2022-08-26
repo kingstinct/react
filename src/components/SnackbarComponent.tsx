@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated'
 
 import type { Action, SnackbarConfig } from '../contexts/Snackbar'
+import type { PropsWithChildren } from 'react'
 import type {
   StyleProp, ViewStyle, ColorValue, TextStyle,
 } from 'react-native'
@@ -63,21 +64,28 @@ export type SnackbarComponentProps<TMap extends Record<string, unknown> = Record
   readonly id: string,
 }
 
-export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
+export type DefaultSnackbarWrapperProps = SnackbarComponentProps & {
   readonly backgroundColor?: ColorValue,
   readonly buttonColor?: ColorValue,
-  readonly textColor?: ColorValue,
   readonly buttonTextStyle?: StyleProp<TextStyle>,
-  readonly textStyle?: StyleProp<TextStyle>,
   readonly style?: StyleProp<ViewStyle>,
   readonly entering?: typeof FadeInUp | null,
   readonly layout?: typeof SequencedTransition | null,
   readonly exiting?: typeof FadeOutDown | null,
 }
 
+export type DefaultSnackbarComponentProps = DefaultSnackbarWrapperProps & {
+  readonly textColor?: ColorValue,
+  readonly textStyle?: StyleProp<TextStyle>,
+}
+
 const DEFAULT_ANIMATION_DURATION = 250
 
 const EMPTY_OBJECT = {}
+
+export const DEFAULT_ENTERING = FadeInUp.duration(DEFAULT_ANIMATION_DURATION)
+export const DEFAULT_LAYOUT = SequencedTransition.duration(DEFAULT_ANIMATION_DURATION * 2) // 2x duration since it's is over a longer distance
+export const DEFAULT_EXITING = FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)
 
 export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> = React.memo(({
   snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, textColor,
@@ -107,13 +115,56 @@ export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> =
 
   return (
     <Animated.View
-      entering={entering ?? FadeInUp.duration(DEFAULT_ANIMATION_DURATION)}
-      layout={layout ?? SequencedTransition.duration(DEFAULT_ANIMATION_DURATION * 2)} // 2x duration since it's is over a longer distance
-      exiting={exiting ?? FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)}
+      entering={entering ?? DEFAULT_ENTERING}
+      layout={layout ?? DEFAULT_LAYOUT} // 2x duration since it's is over a longer distance
+      exiting={exiting ?? DEFAULT_EXITING}
     >
 
       <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
         <Text style={[styles.snackbarText, textStyle, textColor ? { color: textColor } : EMPTY_OBJECT]}>{snackbarConfig.title}</Text>
+        <View style={styles.snackbarButtonWrapper}>
+          { snackbarConfig.actions?.map(renderButton) }
+        </View>
+      </View>
+    </Animated.View>
+  )
+})
+
+export const DefaultSnackbarWrapper: React.FC<PropsWithChildren<DefaultSnackbarWrapperProps>> = React.memo(({
+  snackbarConfig, doDismiss, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, children,
+}) => {
+  const renderButton = useCallback((a: Action, index: number) => (
+    <TouchableOpacity
+      accessibilityRole='button'
+      key={a.key || a.label}
+      onPress={() => {
+        doDismiss(id)
+        a.onPress?.(a)
+      }}
+    >
+      <Text style={[
+        styles.buttonText,
+        buttonTextStyle,
+        buttonColor ? { color: buttonColor } : null,
+        index === 0 ? null : { marginLeft: 16 },
+      ]}
+      >
+        {a.label}
+      </Text>
+    </TouchableOpacity>
+  ), [
+    buttonColor, buttonTextStyle, doDismiss, id,
+  ])
+
+  return (
+    <Animated.View
+      entering={entering ?? DEFAULT_ENTERING}
+      layout={layout ?? DEFAULT_LAYOUT} // 2x duration since it's is over a longer distance
+      exiting={exiting ?? DEFAULT_EXITING}
+    >
+
+      <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
+        { children }
         <View style={styles.snackbarButtonWrapper}>
           { snackbarConfig.actions?.map(renderButton) }
         </View>
