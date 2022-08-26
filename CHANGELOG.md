@@ -1,5 +1,12 @@
 
 
+## [0.10.3](https://github.com/Kingstinct/react/compare/v0.10.2...v0.10.3) (2022-08-26)
+
+
+### Bug Fixes
+
+* export DefaultSnackbar styles ([78f3f6b](https://github.com/Kingstinct/react/commit/78f3f6b96b44147ffcd39dd5de2aa0dadf4eeafb))
+
 ## [0.10.2](https://github.com/Kingstinct/react/compare/v0.10.1...v0.10.2) (2022-08-26)
 
 
