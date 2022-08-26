@@ -1,5 +1,12 @@
 
 
+## [0.10.4](https://github.com/Kingstinct/react/compare/v0.10.3...v0.10.4) (2022-08-26)
+
+
+### Bug Fixes
+
+* add DefaultSnackbarWrapper ([e9c2541](https://github.com/Kingstinct/react/commit/e9c254157b2ebd15ac2e343a0f38c25e583e9a5e))
+
 ## [0.10.3](https://github.com/Kingstinct/react/compare/v0.10.2...v0.10.3) (2022-08-26)
 
 
