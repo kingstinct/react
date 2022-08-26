@@ -1,5 +1,12 @@
 
 
+## [0.10.2](https://github.com/Kingstinct/react/compare/v0.10.1...v0.10.2) (2022-08-26)
+
+
+### Bug Fixes
+
+* textColor on snackbar ([44ef37c](https://github.com/Kingstinct/react/commit/44ef37c854220242b3da857cfc9b74d8e383a558))
+
 ## [0.10.1](https://github.com/Kingstinct/react/compare/v0.10.0...v0.10.1) (2022-08-26)
 
 
