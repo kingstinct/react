@@ -25,7 +25,7 @@
     "prepublishOnly": "concurrently \"yarn build\" \"yarn test\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "release": "release-it"
+    "release": "yarn test && npx release-it"
   },
   "publishConfig": {
     "access": "public",
