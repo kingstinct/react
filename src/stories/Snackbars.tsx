@@ -22,9 +22,9 @@ type MyData = {
 }
 
 const Inner = () => {
-  // const { addSnackbar } = useContext(SnackbarContext)
   const addSnackbar = useAddSnackbar<MyData>()
   const counter = useRef(0)
+
   useEffect(() => {
     const ref = setInterval(() => {
       counter.current += 1
@@ -48,16 +48,21 @@ const Inner = () => {
       })
     }, 2000)
     return () => clearInterval(ref)
-  }, [])
-  return <View>
+  }, [addSnackbar])
 
-  </View>
+  return (
+    <View />
+  )
 }
 
-const CustomSnackbar: React.FC<SnackbarComponentProps<MyData>> = (props) => <DefaultSnackbarComponent {...props}
-  style={{ backgroundColor: 'red' }}
-  textStyle={{ color: 'white' }}
-  buttonColor='pink' />
+const CustomSnackbar: React.FC<SnackbarComponentProps<MyData>> = (props) => (
+  <DefaultSnackbarComponent
+    {...props}
+    style={{ backgroundColor: 'red' }}
+    textStyle={{ color: 'white' }}
+    buttonColor='pink'
+  />
+)
 
 export default function SnackbarsStory() {
   const alert = useAlert()
@@ -65,13 +70,16 @@ export default function SnackbarsStory() {
   const [confirmResponse, setConfirmResponse] = useState<boolean>()
   return (
     <SnackbarProvider>
-      <Inner></Inner>
-      <Button title='Open an alert' onPress={async () => alert('This is an alert', 'This is the message')}></Button>
+      <Inner />
+      <Button title='Open an alert' onPress={async () => alert('This is an alert', 'This is the message')} />
 
       <View style={{ height: 16 }} />
 
-      <Button title='Open a confirmation dialog' onPress={async () => setConfirmResponse(await confirm('This is a confirmation dialog', 'This is the message'))}></Button>
-      <Text>Response from confirmation dialog: {confirmResponse}</Text>
+      <Button title='Open a confirmation dialog' onPress={async () => setConfirmResponse(await confirm('This is a confirmation dialog', 'This is the message'))} />
+      <Text>
+        Response from confirmation dialog:
+        {confirmResponse}
+      </Text>
 
       <SnackbarPresentationView Component={CustomSnackbar} style={{ paddingBottom: 200 }} />
     </SnackbarProvider>

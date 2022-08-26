@@ -13,9 +13,11 @@ const useStyles = createThemedStylesHook(({ theme }) => ({
 const MyComponent = () => {
   const styles = useStyles()
 
-  return <Row style={styles.container}>
-    <Text>My text</Text>
-  </Row>
+  return (
+    <Row style={styles.container}>
+      <Text>My text</Text>
+    </Row>
+  )
 }
 
 export default MyComponent

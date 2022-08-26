@@ -9,7 +9,7 @@ function useAddSnackbar<TMap extends Record<string, unknown> = Record<string, un
 
   return useCallback(function ShowSnackbar<TMapInner extends Record<string, unknown> = TMap, TInner extends keyof TMapInner = keyof TMapInner>(title: string, snackbarConfig?: Omit<SnackbarConfig<TMapInner, TInner>, 'title'>) {
     addSnackbar<TMapInner, TInner>({ ...defaultSnackbarConfig, ...snackbarConfig, title } as SnackbarConfig<TMapInner, TInner>)
-  }, [])
+  }, [addSnackbar, defaultSnackbarConfig])
 }
 
 export default useAddSnackbar

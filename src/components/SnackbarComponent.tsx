@@ -66,6 +66,7 @@ export type SnackbarComponentProps<TMap extends Record<string, unknown> = Record
 export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
   readonly backgroundColor?: ColorValue,
   readonly buttonColor?: ColorValue,
+  readonly textColor?: ColorValue,
   readonly buttonTextStyle?: StyleProp<TextStyle>,
   readonly textStyle?: StyleProp<TextStyle>,
   readonly style?: StyleProp<ViewStyle>,
@@ -77,10 +78,11 @@ export type DefaultSnackbarComponentProps = SnackbarComponentProps & {
 const DEFAULT_ANIMATION_DURATION = 250
 
 export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> = React.memo(({
-  snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting,
+  snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, textColor,
 }) => {
   const renderButton = useCallback((a: Action, index: number) => (
     <TouchableOpacity
+      accessibilityRole='button'
       key={a.key || a.label}
       onPress={() => {
         doDismiss(id)
@@ -92,25 +94,30 @@ export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> =
         buttonTextStyle,
         buttonColor ? { color: buttonColor } : null,
         index === 0 ? null : { marginLeft: 16 },
-      ]}>
+      ]}
+      >
         {a.label}
       </Text>
     </TouchableOpacity>
-  ), [id])
+  ), [
+    buttonColor, buttonTextStyle, doDismiss, id,
+  ])
 
-  return <Animated.View
-    entering={entering ?? FadeInUp.duration(DEFAULT_ANIMATION_DURATION)}
-    layout={layout ?? SequencedTransition.duration(DEFAULT_ANIMATION_DURATION * 2)} // 2x duration since it's is over a longer distance
-    exiting={exiting ?? FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)}
-  >
+  return (
+    <Animated.View
+      entering={entering ?? FadeInUp.duration(DEFAULT_ANIMATION_DURATION)}
+      layout={layout ?? SequencedTransition.duration(DEFAULT_ANIMATION_DURATION * 2)} // 2x duration since it's is over a longer distance
+      exiting={exiting ?? FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)}
+    >
 
-    <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
-      <Text style={[styles.snackbarText, textStyle]}>{snackbarConfig.title}</Text>
-      <View style={styles.snackbarButtonWrapper}>
-        { snackbarConfig.actions?.map(renderButton) }
+      <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
+        <Text style={[styles.snackbarText, textStyle, { color: textColor }]}>{snackbarConfig.title}</Text>
+        <View style={styles.snackbarButtonWrapper}>
+          { snackbarConfig.actions?.map(renderButton) }
+        </View>
       </View>
-    </View>
-  </Animated.View>
+    </Animated.View>
+  )
 })
 
 export default DefaultSnackbarComponent

@@ -10,7 +10,12 @@ export default function useAlert() {
     Alert.alert(
       title,
       message,
-      [{ text: OK, onPress: () => resolve() }],
+      [
+        {
+          text: OK,
+          onPress: () => resolve(),
+        },
+      ],
     )
   }), [OK])
 }

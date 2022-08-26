@@ -58,7 +58,7 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
     if (isVisibleToUser) {
       snackbarsToShow.forEach((snackbar) => snackbarWasPresented(snackbar.id))
     }
-  }, [snackbarsToShow, snackbarWasPresented])
+  }, [snackbarsToShow, snackbarWasPresented, isVisibleToUser])
 
   console.log('snackbarsToShow', snackbarsToShow)
 
@@ -67,11 +67,15 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
       pointerEvents='box-none'
       style={[styles.snackbarPresentationView, style]}
     >
-      { snackbarsToShow.map((i, index) => <Component
+      { snackbarsToShow.map((i, index) => (
+        <Component
           doDismiss={removeSnackbar}
           key={i.id}
           id={i.id}
-          snackbarConfig={i.snackbarConfig} index={index} />) }
+          snackbarConfig={i.snackbarConfig}
+          index={index}
+        />
+      )) }
     </View>
   )
 }

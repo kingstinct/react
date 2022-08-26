@@ -8,7 +8,7 @@ function useToggleWithHaptics(initialValue = false, enableHaptics: boolean | und
   const toggle = useCallback(() => {
     void doHaptics(enableHaptics)
     setValue((prev) => !prev)
-  }, [])
+  }, [enableHaptics])
 
   return [value, toggle] as const
 }

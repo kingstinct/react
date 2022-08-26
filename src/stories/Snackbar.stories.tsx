@@ -1,9 +1,7 @@
-import React from 'react'
-
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
 
 import type { DefaultSnackbarComponentProps } from '../components/SnackbarComponent'
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { ComponentMeta } from '@storybook/react'
 
 export default {
   title: 'Example/Snackbar',
@@ -20,12 +18,7 @@ export default {
   },
 } as ComponentMeta<typeof DefaultSnackbarComponent>
 
-const Template: ComponentStory<typeof DefaultSnackbarComponent> = (props) => {
-  // eslint-disable-next-line functional/immutable-data, @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const textStyle = { ...props.textStyle, color: props.textColor }
-  return <DefaultSnackbarComponent {...props} textStyle={textStyle} />
-}
+const Template = DefaultSnackbarComponent
 
 export const Snickers = Template.bind({})
 

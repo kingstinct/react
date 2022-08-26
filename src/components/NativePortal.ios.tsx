@@ -12,7 +12,8 @@ const NativePortal: React.FC<Props> = ({ children, pointerEvents, insets }) => (
   <Portal>
     <FullWindowOverlay
       pointerEvents={pointerEvents}
-      style={[StyleSheet.absoluteFill, { justifyContent: 'flex-end' }, insets]}>
+      style={[StyleSheet.absoluteFill, { justifyContent: 'flex-end' }, insets]}
+    >
       { children }
     </FullWindowOverlay>
   </Portal>

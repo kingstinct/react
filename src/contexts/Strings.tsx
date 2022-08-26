@@ -17,11 +17,14 @@ type Props = PropsWithChildren<{
   readonly strings: Partial<typeof DEFAULT_VALUE>
 }>
 
-export const StringsProvider: React.FC<Props> = ({ children, strings }) => <StringsContext.Provider value={useMemo(() => ({
-  ...DEFAULT_VALUE,
-  ...strings,
-}), [])}>
-  {children}
-</StringsContext.Provider>
+export const StringsProvider: React.FC<Props> = ({ children, strings }) => (
+  <StringsContext.Provider value={useMemo(() => ({
+    ...DEFAULT_VALUE,
+    ...strings,
+  }), [strings])}
+  >
+    {children}
+  </StringsContext.Provider>
+)
 
 export default StringsContext

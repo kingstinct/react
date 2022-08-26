@@ -11,7 +11,8 @@ const NativePortal: React.FC<Props> = ({ children, pointerEvents = 'box-none', i
   <Portal>
     <View
       pointerEvents={pointerEvents}
-      style={[StyleSheet.absoluteFill, { justifyContent: 'flex-end' }, insets]}>
+      style={[StyleSheet.absoluteFill, { justifyContent: 'flex-end' }, insets]}
+    >
       { children }
     </View>
 

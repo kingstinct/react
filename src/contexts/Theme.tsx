@@ -64,7 +64,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   const value = useMemo<ThemeContextData>(() => ({
     theme: colorScheme === 'dark' ? darkTheme || theme : theme,
-  }), [])
+  }), [colorScheme, darkTheme, theme])
 
   return (
     <ThemeContext.Provider value={value}>

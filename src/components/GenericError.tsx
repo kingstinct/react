@@ -66,7 +66,9 @@ const GenericError: React.FC<Props> = ({
     .with({ hasBeenOffline: true }, () => strings['You are offline'])
     // eslint-disable-next-line @typescript-eslint/no-shadow
     .when(({ error }) => !!error?.networkError, () => strings['Network request failed'])
-    .otherwise(() => strings['Something went wrong, please try again'])), [customMessage, error, hasBeenOffline])
+    .otherwise(() => strings['Something went wrong, please try again'])), [
+    customMessage, error, hasBeenOffline, strings,
+  ])
 
   return (
     <View style={styles.container}>

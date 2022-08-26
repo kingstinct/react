@@ -35,9 +35,12 @@ export const SharedPortalAreaContext = React.createContext(SharedPortalAreaConte
 
 type InsetsWithId = Required<Insets> & {readonly id: string}
 
+const DEFAULT_INSETS = {
+  top: 0, bottom: 0, left: 0, right: 0,
+}
+
 export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly insets?: Insets}>> = ({ children, insets }) => {
-  const safeAreaInsets = useSafeAreaInsets()
-  const defaultInsets = insets ? { ...safeAreaInsets, insets } : safeAreaInsets
+  const defaultInsets = useMemo<Required<Insets>>(() => (insets ? { ...DEFAULT_INSETS, ...insets } : DEFAULT_INSETS), [insets])
   const [{ width, height }, setSize] = useState<LayoutRectangle>({
     width: Dimensions.get('window').width,
     height: 0,
@@ -47,23 +50,38 @@ export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly inse
 
   const [allCustomInsets, setInsets] = useState<readonly InsetsWithId[]>([])
 
-  const value = useMemo<typeof SharedPortalAreaContextDefaultValue>(() => ({
+  const calculatedInset = useMemo(() => {
     // eslint-disable-next-line unicorn/prefer-at
-    insets: allCustomInsets[allCustomInsets.length - 1] || defaultInsets,
+    const lastInset = allCustomInsets[allCustomInsets.length - 1]
+    return lastInset ? { ...defaultInsets, ...lastInset } : defaultInsets
+  }, [allCustomInsets, defaultInsets])
+
+  const removeInset = useCallback((id: string) => setInsets((prev) => prev.filter(({ id: prevId }) => prevId !== id)), [])
+
+  const pushInset = useCallback((i: InsetsWithId) => {
+    setInsets((prev) => [...prev, i])
+  }, [])
+
+  const value = useMemo<typeof SharedPortalAreaContextDefaultValue>(() => ({
+    insets: {
+      bottom: calculatedInset.bottom, left: calculatedInset.left, right: calculatedInset.right, top: calculatedInset.top,
+    },
     size: { width, height },
     setInsets,
     setSize,
-    removeInset: (id: string) => setInsets((prev) => prev.filter(({ id: prevId }) => prevId !== id)),
-    pushInset: (i: InsetsWithId) => {
-      setInsets((prev) => [...prev, i])
-    },
-  }), [insets, width, height])
+    removeInset,
+    pushInset,
+  }), [
+    calculatedInset.bottom, width, height, removeInset, pushInset, calculatedInset.left, calculatedInset.right, calculatedInset.top,
+  ])
 
-  return <PortalProvider>
-    <SharedPortalAreaContext.Provider value={value}>
-      {children}
-    </SharedPortalAreaContext.Provider>
-  </PortalProvider>
+  return (
+    <PortalProvider>
+      <SharedPortalAreaContext.Provider value={value}>
+        {children}
+      </SharedPortalAreaContext.Provider>
+    </PortalProvider>
+  )
 }
 
 // explicitely set all insets
@@ -77,7 +95,9 @@ export const useUpdateSharedPortalAreaInsets = (insets: Required<Insets>, enable
       return () => removeInset(id)
     }
     return () => {}
-  }, [insets])
+  }, [
+    enable, insets, pushInset, removeInset,
+  ])
 }
 
 // set insets, but with safe area as default
@@ -92,7 +112,9 @@ export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets, enable = tru
       return () => removeInset(id)
     }
     return () => {}
-  }, [safeAreaInsets, insets])
+  }, [
+    safeAreaInsets, insets, enable, pushInset, removeInset,
+  ])
 }
 
 export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly style?: StyleProp<ViewStyle> }>> = ({ children, style }) => {
@@ -100,13 +122,15 @@ export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {
     setSize(event.nativeEvent.layout)
-  }, [])
+  }, [setSize])
 
-  return <NativePortal insets={insets}>
+  return (
+    <NativePortal insets={insets}>
 
-    <View onLayout={onLayout} style={[style]} pointerEvents='box-none'>
-      { children }
-    </View>
+      <View onLayout={onLayout} style={[style]} pointerEvents='box-none'>
+        { children }
+      </View>
 
-  </NativePortal>
+    </NativePortal>
+  )
 }

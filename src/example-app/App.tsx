@@ -2,7 +2,9 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
-import React, { useCallback, useContext, useState } from 'react'
+import React, {
+  useCallback, useContext, useMemo, useState,
+} from 'react'
 import { Button, Text } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ActivityIndicator, Switch } from 'react-native-paper'
@@ -58,7 +60,7 @@ const Body: React.FC = () => {
     )
   }, [addSnackbar])
 
-  const SnackbarComponent = useCallback(hasCustomSnackbar ? CustomSnackbarComponent : DefaultSnackbarComponent, [hasCustomSnackbar])
+  const SnackbarComponent = useMemo(() => (hasCustomSnackbar ? CustomSnackbarComponent : DefaultSnackbarComponent), [hasCustomSnackbar])
 
   console.log('App')
 
@@ -90,11 +92,14 @@ const Body: React.FC = () => {
           onPress={async () => setConfirmationDialogResponse(await confirm('This is a confirmation dialog', 'This is the message'))}
         />
 
-        <Text>Response from confirmation dialog: {confirmationDialogResponse?.toString()}</Text>
+        <Text>
+          Response from confirmation dialog:
+          {confirmationDialogResponse?.toString()}
+        </Text>
       </Column>
       <NativePortal pointerEvents='none' insets={{ bottom: insets.bottom + size.height, right: 10, left: 360 }}>
-        <Animated.View layout={CurvedTransition} style={{ }} >
-          <ActivityIndicator></ActivityIndicator>
+        <Animated.View layout={CurvedTransition} style={{ }}>
+          <ActivityIndicator />
         </Animated.View>
       </NativePortal>
       <SharedPortalPresentationArea style={{ backgroundColor: 'rgba(0, 255, 0, 0.1)' }}>
@@ -112,8 +117,8 @@ export default function App() {
           <SnackbarProvider>
             <SharedPortalAreaProvider>
               <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
-                <StatusBar style='auto' />
-                <Body></Body>
+                <StatusBar />
+                <Body />
               </StringsProvider>
             </SharedPortalAreaProvider>
           </SnackbarProvider>
