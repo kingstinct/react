@@ -1,5 +1,12 @@
 
 
+## [0.10.1](https://github.com/Kingstinct/react/compare/v0.10.0...v0.10.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* add react-native eslint config ([ae1b44e](https://github.com/Kingstinct/react/commit/ae1b44e5f79369c84ea466ae4d993f5fa0ad9d90))
+
 # [0.10.0](https://github.com/Kingstinct/react/compare/v0.9.0...v0.10.0) (2022-08-25)
 
 
