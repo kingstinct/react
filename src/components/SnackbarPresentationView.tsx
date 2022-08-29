@@ -17,28 +17,6 @@ const styles = StyleSheet.create({
   snackbarPresentationView: {
     justifyContent: 'flex-start', flexDirection: 'column-reverse',
   },
-  snackbar: {
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 5,
-    margin: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  },
-  snackbarButtonWrapper: {
-    flexDirection: 'row', justifyContent: 'flex-end', flexGrow: 1,
-  },
 })
 
 type SnackbarPresentationViewProps = {
@@ -59,8 +37,6 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
       snackbarsToShow.forEach((snackbar) => snackbarWasPresented(snackbar.id))
     }
   }, [snackbarsToShow, snackbarWasPresented, isVisibleToUser])
-
-  console.log('snackbarsToShow', snackbarsToShow)
 
   return (
     <View
