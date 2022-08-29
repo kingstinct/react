@@ -88,7 +88,18 @@ export const DEFAULT_LAYOUT = SequencedTransition.duration(DEFAULT_ANIMATION_DUR
 export const DEFAULT_EXITING = FadeOutDown.duration(DEFAULT_ANIMATION_DURATION)
 
 export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> = React.memo(({
-  snackbarConfig, doDismiss, textStyle, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, textColor,
+  backgroundColor,
+  buttonColor,
+  buttonTextStyle,
+  doDismiss,
+  entering,
+  exiting,
+  id,
+  layout,
+  snackbarConfig,
+  style,
+  textColor,
+  textStyle,
 }) => {
   const renderButton = useCallback((a: Action, index: number) => (
     <TouchableOpacity

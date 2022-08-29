@@ -1,9 +1,9 @@
 import createThemedStylesHook from './createThemedStylesHook'
-import randomHexColor from './randomHexColor'
 import Styles from './Styles'
+
+export * from './randomHexColor'
 
 export {
   createThemedStylesHook,
-  randomHexColor,
   Styles,
 }

@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 
 import { SnackbarContext } from '../contexts/Snackbar'
+import randomHexColorAlpha from '../utils/randomHexColor'
 import DefaultSnackbarComponent from './SnackbarComponent'
 
 import type { SnackbarComponentProps } from './SnackbarComponent'
@@ -23,12 +24,14 @@ type SnackbarPresentationViewProps = {
   readonly Component?: React.FC<SnackbarComponentProps>,
   readonly style?: StyleProp<ViewStyle>
   readonly isVisibleToUser?: boolean,
+  readonly colorize?: boolean
 }
 
 const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   Component = DefaultSnackbarComponent,
   isVisibleToUser = true,
   style,
+  colorize,
 }) => {
   const { snackbarWasPresented, snackbarsToShow, removeSnackbar } = React.useContext(SnackbarContext)
 
@@ -41,7 +44,7 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   return (
     <View
       pointerEvents='box-none'
-      style={[styles.snackbarPresentationView, style]}
+      style={[styles.snackbarPresentationView, style, { backgroundColor: colorize ? randomHexColorAlpha() : undefined }]}
     >
       { snackbarsToShow.map((i, index) => (
         <Component

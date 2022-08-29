@@ -1,4 +1,4 @@
-const randomHexColor = () => {
+export const randomHexColor = () => {
   let color = '#',
       i = 5
   // eslint-disable-next-line no-plusplus
@@ -6,4 +6,10 @@ const randomHexColor = () => {
   return color
 }
 
-export default randomHexColor
+export const randomHexColorAlpha = (alpha = '55') => {
+  const color = randomHexColor()
+
+  return `${color}55`
+}
+
+export default randomHexColorAlpha

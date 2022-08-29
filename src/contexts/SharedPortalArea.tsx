@@ -117,7 +117,7 @@ export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets, enable = tru
   ])
 }
 
-export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly style?: StyleProp<ViewStyle> }>> = ({ children, style }) => {
+export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly style?: StyleProp<ViewStyle>, readonly colorize?: boolean }>> = ({ children, style, colorize }) => {
   const { setSize, insets } = useContext(SharedPortalAreaContext)
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {
@@ -125,9 +125,9 @@ export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly
   }, [setSize])
 
   return (
-    <NativePortal insets={insets}>
+    <NativePortal insets={insets} colorize={colorize}>
 
-      <View onLayout={onLayout} style={[style]} pointerEvents='box-none'>
+      <View onLayout={onLayout} style={style} pointerEvents='box-none'>
         { children }
       </View>
 
