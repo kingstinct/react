@@ -1,5 +1,18 @@
 
 
+# [0.11.0](https://github.com/Kingstinct/react/compare/v0.10.4...v0.11.0) (2022-08-29)
+
+
+### Bug Fixes
+
+* cleanup ([4a05cdc](https://github.com/Kingstinct/react/commit/4a05cdc12aa0d45c8827604c4d2381172454bebb))
+* run tests before release ([997847f](https://github.com/Kingstinct/react/commit/997847f7bc3f4e9ead7f10b044337601eae49ff0))
+
+
+### Features
+
+* add colorize to portals, make it transparent ([1222820](https://github.com/Kingstinct/react/commit/1222820d729691155ee9f1b9650138ced1c14105))
+
 ## [0.10.4](https://github.com/Kingstinct/react/compare/v0.10.3...v0.10.4) (2022-08-26)
 
 
