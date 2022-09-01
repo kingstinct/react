@@ -10,7 +10,8 @@
     "hooks",
     "primitives",
     "utils",
-    "index.d.ts"
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "start": "cp index.expo.js index.js && expo start",
