@@ -1,5 +1,12 @@
 
 
+## [0.11.1](https://github.com/Kingstinct/react/compare/v0.11.0...v0.11.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* added index.js to npm package ([54cc630](https://github.com/Kingstinct/react/commit/54cc630d5f6fd7101b656e21a54429b4152b6e92))
+
 # [0.11.0](https://github.com/Kingstinct/react/compare/v0.10.4...v0.11.0) (2022-08-29)
 
 
