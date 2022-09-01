@@ -1,5 +1,12 @@
 
 
+## [0.11.2](https://github.com/Kingstinct/react/compare/v0.11.1...v0.11.2) (2022-09-01)
+
+
+### Bug Fixes
+
+* allow all view props on primitives ([7dd879b](https://github.com/Kingstinct/react/commit/7dd879b1a94f6e978807ea039a7ec03451fee536))
+
 ## [0.11.1](https://github.com/Kingstinct/react/compare/v0.11.0...v0.11.1) (2022-09-01)
 
 
