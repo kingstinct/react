@@ -76,7 +76,7 @@ const Body: React.FC = () => {
           title='Add snackbar'
           onPress={() => {
             addSnackbar(
-              'Click to add another snackbar',
+              'Click to add another snackbar that is different',
               { actions: [{ label: 'Short', onPress: addShortSnackbar }, { label: 'Verbose', onPress: addVerboseSnackbar }] },
             )
           }}
@@ -102,8 +102,12 @@ const Body: React.FC = () => {
           <ActivityIndicator />
         </Animated.View>
       </NativePortal>
-      <SharedPortalPresentationArea style={{ backgroundColor: 'rgba(0, 255, 0, 0.1)' }}>
-        <SnackbarPresentationView key='124233' Component={SnackbarComponent} />
+      <SharedPortalPresentationArea colorize style={{ marginBottom: 200 }}>
+        <SnackbarPresentationView
+          key='124233'
+          Component={SnackbarComponent}
+          colorize
+        />
       </SharedPortalPresentationArea>
     </SafeAreaProvider>
   )
@@ -114,7 +118,7 @@ export default function App() {
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
-          <SnackbarProvider>
+          <SnackbarProvider snackbarsToShowAtSameTime={3}>
             <SharedPortalAreaProvider>
               <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
                 <StatusBar />

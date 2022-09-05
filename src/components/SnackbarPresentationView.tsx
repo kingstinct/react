@@ -2,7 +2,7 @@ import React, {
   useEffect,
 } from 'react'
 import {
-  StyleSheet, View,
+  View,
 } from 'react-native'
 
 import { SnackbarContext } from '../contexts/Snackbar'
@@ -13,12 +13,6 @@ import type { SnackbarComponentProps } from './SnackbarComponent'
 import type {
   StyleProp, ViewStyle,
 } from 'react-native'
-
-const styles = StyleSheet.create({
-  snackbarPresentationView: {
-    justifyContent: 'flex-start', flexDirection: 'column-reverse',
-  },
-})
 
 type SnackbarPresentationViewProps = {
   readonly Component?: React.FC<SnackbarComponentProps>,
@@ -44,7 +38,7 @@ const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   return (
     <View
       pointerEvents='box-none'
-      style={[styles.snackbarPresentationView, style, { backgroundColor: colorize ? randomHexColorAlpha() : undefined }]}
+      style={[style, { backgroundColor: colorize ? randomHexColorAlpha() : undefined }]}
     >
       { snackbarsToShow.map((i, index) => (
         <Component

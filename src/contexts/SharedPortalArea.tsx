@@ -4,6 +4,7 @@ import React, {
   useCallback, useContext, useEffect, useMemo, useState,
 } from 'react'
 import { Dimensions, View } from 'react-native'
+import Animated, { CurvedTransition } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import NativePortal from '../components/NativePortal'
@@ -117,7 +118,13 @@ export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets, enable = tru
   ])
 }
 
-export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly style?: StyleProp<ViewStyle>, readonly colorize?: boolean }>> = ({ children, style, colorize }) => {
+type SharedPortalPresentationAreaProps = PropsWithChildren<{ readonly style?: StyleProp<ViewStyle>, readonly colorize?: boolean }>
+
+export const SharedPortalPresentationArea: React.FC<SharedPortalPresentationAreaProps> = ({
+  children,
+  style,
+  colorize,
+}) => {
   const { setSize, insets } = useContext(SharedPortalAreaContext)
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {
@@ -126,11 +133,14 @@ export const SharedPortalPresentationArea: React.FC<PropsWithChildren<{ readonly
 
   return (
     <NativePortal insets={insets} colorize={colorize}>
-
-      <View onLayout={onLayout} style={style} pointerEvents='box-none'>
+      <Animated.View
+        layout={CurvedTransition.duration(500)}
+        onLayout={onLayout}
+        style={style}
+        pointerEvents='box-none'
+      >
         { children }
-      </View>
-
+      </Animated.View>
     </NativePortal>
   )
 }

@@ -2,6 +2,7 @@
   "extends": ["eslint-config-kingstinct/react-native"],
   "ignorePatterns": ["lib", "/utils", "/hooks", "/contexts", "/components", "/primitives", "/index.js", "index.d.ts", "/stories", "/example-app", "/storybook-static"],
   "rules": {
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "react/boolean-prop-naming": 0
   }
 }
