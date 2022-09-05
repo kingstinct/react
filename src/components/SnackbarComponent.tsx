@@ -2,6 +2,7 @@ import React, {
   useCallback,
 } from 'react'
 import {
+  Platform,
   StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native'
 import Animated, {
@@ -20,7 +21,9 @@ const DEFAULT_BACKGROUND_COLOR = '#323232',
       DEFAULT_TEXT_COLOR = '#CDCDCD'
 
 export const styles = StyleSheet.create({
-  snackbarContent: { marginBottom: 16 },
+  snackbarContent: {
+    marginBottom: Platform.OS === 'web' ? 0 : 16,
+  },
   buttonText: {
     color: DEFAULT_BUTTON_TEXT_COLOR,
     fontWeight: '500',
@@ -55,7 +58,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     flexGrow: 1,
-    marginBottom: 16,
+    marginBottom: Platform.OS === 'web' ? 0 : 16,
     alignItems: 'center',
   },
 })
