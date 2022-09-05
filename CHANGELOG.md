@@ -1,5 +1,12 @@
 
 
+## [0.11.3](https://github.com/Kingstinct/react/compare/v0.11.2...v0.11.3) (2022-09-05)
+
+
+### Bug Fixes
+
+* smoother animations ([cb7d402](https://github.com/Kingstinct/react/commit/cb7d402f86f149deb35d0d414abd2a2f17f747a5))
+
 ## [0.11.2](https://github.com/Kingstinct/react/compare/v0.11.1...v0.11.2) (2022-09-01)
 
 
