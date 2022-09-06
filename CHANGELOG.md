@@ -1,5 +1,12 @@
 
 
+## [0.11.4](https://github.com/Kingstinct/react/compare/v0.11.3...v0.11.4) (2022-09-06)
+
+
+### Bug Fixes
+
+* improve snackbar look on web ([96203e4](https://github.com/Kingstinct/react/commit/96203e40f3c4d563e9627ea64ac4fe760dda226a))
+
 ## [0.11.3](https://github.com/Kingstinct/react/compare/v0.11.2...v0.11.3) (2022-09-05)
 
 
