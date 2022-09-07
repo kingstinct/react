@@ -21,7 +21,7 @@
     "build": " rimraf lib && tsc --declaration -p ./tsconfig.build.json",
     "test": "concurrently \"yarn test-only\" \"yarn lint\" \"tsc --noEmit\"",
     "test-only": "jest",
-    "lint": "eslint .",
+    "lint": "eslint . --cache",
     "prepare": "husky install",
     "prepublishOnly": "concurrently \"yarn build\" \"yarn test\"",
     "storybook": "start-storybook -p 6006",
