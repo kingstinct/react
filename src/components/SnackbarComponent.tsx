@@ -76,8 +76,8 @@ export type DefaultSnackbarWrapperProps = SnackbarComponentProps & {
   readonly buttonTextStyle?: StyleProp<TextStyle>,
   readonly style?: StyleProp<ViewStyle>,
   readonly entering?: typeof FadeIn | null,
-  readonly layout?: typeof SequencedTransition | null,
   readonly exiting?: typeof FadeOut | null,
+  readonly contentStyle?: StyleProp<ViewStyle>,
 }
 
 export type DefaultSnackbarComponentProps = DefaultSnackbarWrapperProps & {
@@ -102,7 +102,10 @@ export const DefaultSnackbarComponent: React.FC<DefaultSnackbarComponentProps> =
 ))
 
 export const DefaultSnackbarWrapper: React.FC<PropsWithChildren<DefaultSnackbarWrapperProps>> = React.memo(({
-  snackbarConfig, doDismiss, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, layout, exiting, children,
+  snackbarConfig,
+  doDismiss, backgroundColor, buttonColor, buttonTextStyle, id, style, entering, exiting,
+  children,
+  contentStyle,
 }) => {
   const renderButton = useCallback((a: Action, index: number) => (
     <TouchableOpacity
@@ -135,7 +138,7 @@ export const DefaultSnackbarWrapper: React.FC<PropsWithChildren<DefaultSnackbarW
     >
 
       <View style={[styles.snackbar, style, backgroundColor ? { backgroundColor } : null]}>
-        <View style={styles.snackbarContent}>
+        <View style={[styles.snackbarContent, contentStyle]}>
           { children }
         </View>
         <View style={styles.snackbarButtonWrapper}>
