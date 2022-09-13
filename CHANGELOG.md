@@ -1,5 +1,12 @@
 
 
+# [0.12.0](https://github.com/Kingstinct/react/compare/v0.11.5...v0.12.0) (2022-09-13)
+
+
+### Features
+
+* add KeyboardContext ([df68daf](https://github.com/Kingstinct/react/commit/df68dafceed3f67c3b60100d43d6eb80e4252f28))
+
 ## [0.11.4](https://github.com/Kingstinct/react/compare/v0.11.3...v0.11.4) (2022-09-06)
 
 
