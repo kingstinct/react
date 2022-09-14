@@ -1,5 +1,12 @@
 
 
+# [0.13.0](https://github.com/Kingstinct/react/compare/v0.12.0...v0.13.0) (2022-09-14)
+
+
+### Features
+
+* add status to AuthProvider ([4eaf2a6](https://github.com/Kingstinct/react/commit/4eaf2a6f4a51ef141205aef329c2ad7a2663785d))
+
 # [0.12.0](https://github.com/Kingstinct/react/compare/v0.11.5...v0.12.0) (2022-09-13)
 
 
