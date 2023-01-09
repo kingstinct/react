@@ -2,7 +2,7 @@ import { useContext } from 'react'
 
 import { AuthContext } from '../contexts/Auth'
 
-const useIsLoggedIn = () => {
+export const useIsLoggedIn = () => {
   const { hasToken } = useContext(AuthContext)
 
   return hasToken

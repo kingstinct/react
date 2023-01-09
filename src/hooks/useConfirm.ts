@@ -3,7 +3,7 @@ import { Alert } from 'react-native'
 
 import StringsContext from '../contexts/Strings'
 
-export default function useConfirm() {
+export function useConfirm() {
   const { Cancel, OK } = useContext(StringsContext)
 
   return useCallback(async (title: string, message?: string) => new Promise<boolean>((resolve) => {
@@ -18,3 +18,5 @@ export default function useConfirm() {
     )
   }), [Cancel, OK])
 }
+
+export default useConfirm

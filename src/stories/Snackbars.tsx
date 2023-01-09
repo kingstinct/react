@@ -11,8 +11,8 @@ import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import SnackbarPresentationView from '../components/SnackbarPresentationView'
 import { SnackbarProvider } from '../contexts/Snackbar'
 import useAddSnackbar from '../hooks/useAddSnackbar'
-import useAlert from '../hooks/useAlert.web'
-import useConfirm from '../hooks/useConfirm.web'
+import useAlert from '../hooks/useAlert'
+import useConfirm from '../hooks/useConfirm'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
 

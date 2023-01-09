@@ -3,6 +3,8 @@ const confirm = async (title: string, message?: string) => new Promise<boolean>(
   resolve(window.confirm([title, message].filter(Boolean).join('\n')))
 })
 
-export default function useConfirm() {
+export function useConfirm() {
   return confirm
 }
+
+export default useConfirm

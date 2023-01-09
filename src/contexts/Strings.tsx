@@ -11,7 +11,7 @@ const DEFAULT_VALUE = {
   'OK': 'OK',
 }
 
-const StringsContext = createContext<typeof DEFAULT_VALUE>(DEFAULT_VALUE)
+export const StringsContext = createContext<typeof DEFAULT_VALUE>(DEFAULT_VALUE)
 
 type Props = PropsWithChildren<{
   readonly strings: Partial<typeof DEFAULT_VALUE>

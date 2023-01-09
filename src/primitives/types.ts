@@ -8,6 +8,7 @@ export type SharedProps = PropsWithChildren<{
   readonly centerX?: boolean,
   readonly centerY?: boolean,
   readonly colorize?: boolean,
+  readonly colorizeBorder?: boolean,
   readonly fill?: boolean,
   readonly height?: number | string,
   readonly margin?: number | string,
@@ -25,6 +26,8 @@ export type SharedProps = PropsWithChildren<{
   readonly paddingX?: number | string,
   readonly paddingY?: number | string,
   readonly width?: number | string,
+  readonly borderColor?: string,
+  readonly borderWidth?: number,
 }>
 
 export type PrimitiveViewProps = Omit<ViewProps, 'style'> & SharedProps & {

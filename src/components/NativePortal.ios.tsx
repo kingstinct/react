@@ -8,7 +8,7 @@ import randomHexColorAlpha from '../utils/randomHexColor'
 import type { Props } from './NativePortal.types'
 import type { StyleProp, ViewStyle } from 'react-native'
 
-const NativePortal: React.FC<Props> = ({
+export const NativePortal: React.FC<Props> = ({
   children, pointerEvents = 'box-none', insets, colorize,
 }) => {
   const style = useMemo<StyleProp<ViewStyle>>(() => [

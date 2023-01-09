@@ -22,6 +22,7 @@ examples:
       </Row>
 */
 
+import { StyleSheet } from 'react-native'
 import { match } from 'ts-pattern'
 
 import { createThemedView } from '../utils/createThemedStylesHook'
@@ -33,7 +34,7 @@ export type RowProps = PrimitiveViewProps & {
   readonly wrap?: boolean
 }
 
-const Row = createThemedView(({
+export const Row = createThemedView(({
   center,
   spaceBetween,
   spaceAround,
@@ -46,6 +47,7 @@ const Row = createThemedView(({
   marginY,
   backgroundColor,
   paddingY,
+  colorizeBorder,
   paddingX,
   wrap,
   style,
@@ -55,6 +57,8 @@ const Row = createThemedView(({
     alignItems: center || centerY ? 'center' : undefined,
     backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
     flex: fill ? 1 : undefined,
+    borderColor: colorizeBorder ? randomHexColor() : props.borderColor,
+    borderWidth: colorizeBorder ? StyleSheet.hairlineWidth : props.borderWidth,
     flexDirection: 'row',
     flexWrap: wrap ? 'wrap' : undefined,
     justifyContent: match({

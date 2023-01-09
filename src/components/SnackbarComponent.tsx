@@ -14,7 +14,6 @@ import type { PropsWithChildren } from 'react'
 import type {
   StyleProp, ViewStyle, ColorValue, TextStyle,
 } from 'react-native'
-import type { SequencedTransition } from 'react-native-reanimated'
 
 const DEFAULT_BACKGROUND_COLOR = '#323232',
       DEFAULT_BUTTON_TEXT_COLOR = '#B28FF0',

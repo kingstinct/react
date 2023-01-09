@@ -21,12 +21,12 @@ export type CreateUrqlClient<T extends GraphQLErrorExtensions = GraphQLErrorExte
   readonly clearToken: () => void,
 }) => Client
 
-type Props<T extends GraphQLErrorExtensions> = PropsWithChildren<{
+export type UrqlProviderProps<T extends GraphQLErrorExtensions> = PropsWithChildren<{
   readonly onError: (error: CombinedErrorWithExtensions<T>, operation: Operation) => void,
   readonly createClient: CreateUrqlClient<T>,
 }>
 
-type CustomGraphQLError<T extends GraphQLErrorExtensions = GraphQLErrorExtensions> = Omit<GraphQLError, 'extensions'> & {
+export type CustomGraphQLError<T extends GraphQLErrorExtensions = GraphQLErrorExtensions> = Omit<GraphQLError, 'extensions'> & {
   readonly extensions: T
 }
 
@@ -34,7 +34,7 @@ export type CombinedErrorWithExtensions<T extends GraphQLErrorExtensions = Graph
   readonly graphQLErrors: readonly CustomGraphQLError<T>[];
 }
 
-function UrqlProvider<T extends GraphQLErrorExtensions>({ children, createClient, onError }: Props<T>) {
+function UrqlProvider<T extends GraphQLErrorExtensions>({ children, createClient, onError }: UrqlProviderProps<T>) {
   const { token, clearToken } = useContext(AuthContext)
   const [reloadClientAt, setReloadClientAt] = useState(Date.now())
 

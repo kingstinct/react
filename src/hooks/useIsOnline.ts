@@ -5,7 +5,7 @@ import useRunIfMounted from './useRunIfMounted'
 
 import type { NetInfoChangeHandler } from '@react-native-community/netinfo'
 
-const useIsOnline = (): boolean => {
+export const useIsOnline = (): boolean => {
   const [isOnline, setIsOnline] = useState(false),
         runIfMounted = useRunIfMounted()
 

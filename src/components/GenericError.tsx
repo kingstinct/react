@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   icon: { padding: 20 },
 })
 
-type OnTryAgain<T = unknown> = () => (Promise<T> | T);
-type OnTryAgainWithNetworkStatus<T = unknown> = (wasNetworkRelated: boolean) => (Promise<T> | void);
+export type OnTryAgain<T = unknown> = () => (Promise<T> | T);
+export type OnTryAgainWithNetworkStatus<T = unknown> = (wasNetworkRelated: boolean) => (Promise<T> | void);
 
-type Props = {
+export type GenericErrorProps = {
   readonly onTryAgain?: OnTryAgain,
   readonly onTryAgainWithNetworkStatus?: OnTryAgainWithNetworkStatus,
   readonly customMessage?: string
   readonly error: CombinedError | undefined,
 }
 
-const GenericError: React.FC<Props> = ({
+export const GenericError: React.FC<GenericErrorProps> = ({
   onTryAgain, onTryAgainWithNetworkStatus, customMessage, error,
 }) => {
   const [loading, setLoading] = useState(false),

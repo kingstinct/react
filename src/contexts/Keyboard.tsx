@@ -9,7 +9,7 @@ import { useBoolean } from '../hooks'
 import type { PropsWithChildren } from 'react'
 import type { KeyboardEventListener } from 'react-native'
 
-type ContextType = {
+export type KeyboardContextType = {
   readonly isUsingPhysicalKeyboard: boolean;
   readonly keyboardHeight: number;
   readonly willKeyboardBeShown: boolean,
@@ -18,7 +18,7 @@ type ContextType = {
 
 const STORAGE_KEY = 'keyboardExternal'
 
-const KeyboardContext = createContext<ContextType>({
+export const KeyboardContext = createContext<KeyboardContextType>({
   isKeyboardShown: false,
   isUsingPhysicalKeyboard: false,
   keyboardHeight: 0,

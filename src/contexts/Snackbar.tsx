@@ -46,7 +46,7 @@ const SnackbarContextDefault = {
 
 export const SnackbarContext = React.createContext(SnackbarContextDefault)
 
-type SnackbarProviderProps = PropsWithChildren<{
+export type SnackbarProviderProps = PropsWithChildren<{
   readonly defaultTimeoutMs?: number,
   readonly snackbarsToShowAtSameTime?: number
 }>

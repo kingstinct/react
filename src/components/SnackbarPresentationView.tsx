@@ -14,14 +14,14 @@ import type {
   StyleProp, ViewStyle,
 } from 'react-native'
 
-type SnackbarPresentationViewProps = {
+export type SnackbarPresentationViewProps = {
   readonly Component?: React.FC<SnackbarComponentProps>,
   readonly style?: StyleProp<ViewStyle>
   readonly isVisibleToUser?: boolean,
   readonly colorize?: boolean
 }
 
-const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
+export const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   Component = DefaultSnackbarComponent,
   isVisibleToUser = true,
   style,

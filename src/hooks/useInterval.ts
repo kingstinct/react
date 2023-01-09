@@ -10,7 +10,7 @@ type TimerHandler = (...args: readonly unknown[]) => void;
  * @param delay - Number representing the delay in ms. Set to `null` to "pause" the interval.
  */
 
-const useInterval = (callback: TimerHandler, delay: Delay) => {
+export const useInterval = (callback: TimerHandler, delay: Delay) => {
   const savedCallbackRef = useRef<TimerHandler>()
 
   useEffect(() => {

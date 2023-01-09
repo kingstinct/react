@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useIsStandalonePWA = () => {
+export const useIsStandalonePWA = () => {
   const [isPWA, setIsPWA] = useState(false)
 
   useEffect(() => {

@@ -22,6 +22,7 @@ examples:
       </Row>
 */
 
+import { StyleSheet } from 'react-native'
 import { match } from 'ts-pattern'
 
 import { createThemedView } from '../utils/createThemedStylesHook'
@@ -29,11 +30,21 @@ import randomHexColor from '../utils/randomHexColor'
 
 import type { PrimitiveViewProps } from './types'
 
-const Grid = createThemedView(({
+export const Grid = createThemedView(({
   center,
   spaceBetween,
-  spaceAround, spaceEvenly, centerY, centerX, fill, colorize, marginX, marginY, paddingY, paddingX,
+  spaceAround,
+  spaceEvenly,
+  centerY,
+  centerX,
+  fill,
+  colorize,
+  marginX,
+  marginY,
+  paddingY,
+  paddingX,
   backgroundColor,
+  colorizeBorder,
   style,
   ...props
 }: PrimitiveViewProps) => ([
@@ -42,6 +53,8 @@ const Grid = createThemedView(({
     backgroundColor: backgroundColor || (colorize ? randomHexColor() : undefined),
     flex: fill ? 1 : undefined,
     flexDirection: 'row',
+    borderColor: colorizeBorder ? randomHexColor() : props.borderColor,
+    borderWidth: colorizeBorder ? StyleSheet.hairlineWidth : props.borderWidth,
     flexWrap: 'wrap',
     // eslint-disable-next-line no-nested-ternary
     justifyContent: match({

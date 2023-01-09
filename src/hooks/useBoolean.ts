@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-function useBoolean(initialValue = false) {
+export function useBoolean(initialValue = false) {
   const [value, setValue] = useState(initialValue)
 
   const on = useCallback(() => setValue(true), [])

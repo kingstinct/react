@@ -28,7 +28,7 @@ import randomHexColor from '../utils/randomHexColor'
 import type { FactoryProps } from '../utils/createThemedStylesHook'
 import type { TextProps } from './types'
 
-const Text = createThemedText(({
+export const Text = createThemedText(({
   center,
   centerY,
   centerX,

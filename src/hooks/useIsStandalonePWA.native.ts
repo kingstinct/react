@@ -1,3 +1,3 @@
-const useIsStandalonePWA = () => false
+export const useIsStandalonePWA = () => false
 
 export default useIsStandalonePWA

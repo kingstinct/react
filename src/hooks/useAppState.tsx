@@ -11,7 +11,7 @@ const VISIBILITY_STATE_PROPERTY = isPrefixed ? 'webkitVisibilityState' : 'visibi
 // @ts-ignore
 const isAvailable = document[VISIBILITY_STATE_PROPERTY]
 
-const getCurrentState = (isFocused: boolean): AppStateStatus => {
+export const getCurrentState = (isFocused: boolean): AppStateStatus => {
   if (!isAvailable) {
     return isFocused ? 'active' : 'inactive'
   }
@@ -28,7 +28,7 @@ const getCurrentState = (isFocused: boolean): AppStateStatus => {
   }
 }
 
-const useAppState = () => {
+export const useAppState = () => {
   const [appState, setAppState] = useState(getCurrentState(document.hasFocus()))
   const isFocused = useRef(false)
 

@@ -10,7 +10,7 @@ type Props = Omit<RefreshControlProps, 'onRefresh' | 'refreshing'> & {
   readonly onStatusChange?: (isLoading: boolean) => void,
 }
 
-export default React.forwardRef<RefreshControl, Props>(function RefetchControl({
+export const RefetchControl = React.forwardRef<RefreshControl, Props>(function RefetchControl({
   onRefetch, onStatusChange, ...props
 }, ref) {
   const [isRefetching, setIsRefetching] = useState(false)
@@ -37,3 +37,5 @@ export default React.forwardRef<RefreshControl, Props>(function RefetchControl({
     />
   )
 })
+
+export default RefetchControl
