@@ -1,16 +1,5 @@
-import { useCallback, useState } from 'react'
+import useToggle from './useToggle'
 
-import doHaptics from '../utils/doHaptics'
+export const useToggleWithHaptics = useToggle
 
-export function useToggleWithHaptics(initialValue = false, enableHaptics: boolean | undefined = undefined) {
-  const [value, setValue] = useState(initialValue)
-
-  const toggle = useCallback(() => {
-    void doHaptics(enableHaptics)
-    setValue((prev) => !prev)
-  }, [enableHaptics])
-
-  return [value, toggle] as const
-}
-
-export default useToggleWithHaptics
+export default useToggle

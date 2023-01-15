@@ -1,22 +1,10 @@
-import { useCallback, useContext } from 'react'
-import { Alert } from 'react-native'
-
-import StringsContext from '../contexts/Strings'
+const confirm = async (title: string, message?: string) => new Promise<boolean>((resolve) => {
+  // eslint-disable-next-line no-alert
+  resolve(window.confirm([title, message].filter(Boolean).join('\n')))
+})
 
 export function useConfirm() {
-  const { Cancel, OK } = useContext(StringsContext)
-
-  return useCallback(async (title: string, message?: string) => new Promise<boolean>((resolve) => {
-    Alert.alert(
-      title,
-      message,
-      [
-        { text: Cancel, onPress: () => resolve(false), style: 'cancel' },
-        { text: OK, onPress: () => resolve(true) },
-      ],
-      { cancelable: false },
-    )
-  }), [Cancel, OK])
+  return confirm
 }
 
 export default useConfirm
