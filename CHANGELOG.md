@@ -1,5 +1,17 @@
 
 
+# [0.15.0](https://github.com/kingstinct/react/compare/v0.13.0...v0.15.0) (2023-01-15)
+
+
+### Bug Fixes
+
+* useBooleanWithHaptics, fix some other stuff ([82dad4b](https://github.com/kingstinct/react/commit/82dad4b16efd83a7576ecb02e249cb0db425d8a7))
+
+
+### Features
+
+* reorganize a bit, export more stuff ([e080fa0](https://github.com/kingstinct/react/commit/e080fa0ee7ec7f4eafd547488c5d05882d115f17))
+
 # [0.13.0](https://github.com/Kingstinct/react/compare/v0.12.0...v0.13.0) (2022-09-14)
 
 
