@@ -2,26 +2,22 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
-import React, {
-  useCallback, useContext, useMemo, useState,
-} from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Text } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ActivityIndicator, Switch } from 'react-native-paper'
-import Animated, {
-  CurvedTransition,
-} from 'react-native-reanimated'
+import Animated, { CurvedTransition } from 'react-native-reanimated'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import NativePortal from '../components/NativePortal'
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import SnackbarPresentationView from '../components/SnackbarPresentationView'
-import { SharedPortalAreaContext, SharedPortalAreaProvider, SharedPortalPresentationArea } from '../contexts/SharedPortalArea'
 import { SnackbarProvider } from '../contexts/Snackbar'
 import { StringsProvider } from '../contexts/Strings'
 import useAddSnackbar from '../hooks/useAddSnackbar'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
+import useSharedPortalArea, { SharedPortalAreaProvider, SharedPortalPresentationArea } from '../hooks/useSharedPortalArea'
 import Column from '../primitives/Column'
 import Row from '../primitives/Row'
 
@@ -39,7 +35,8 @@ const CustomSnackbarComponent: React.FC<SnackbarComponentProps> = (props) => (
 )
 
 const Body: React.FC = () => {
-  const { insets, size } = useContext(SharedPortalAreaContext)
+  const insets = useSharedPortalArea((state) => state.insets)
+  const size = useSharedPortalArea((state) => state.size)
   const [hasCustomSnackbar, setHasCustomSnackbar] = useState(false)
   const [confirmationDialogResponse, setConfirmationDialogResponse] = useState<boolean>()
   const addSnackbar = useAddSnackbar()
