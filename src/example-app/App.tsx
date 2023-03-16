@@ -13,7 +13,7 @@ import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import { StringsProvider } from '../contexts/Strings'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
-import useKeyboardLayout, {
+import {
   useIsKeyboardShown, useIsUsingPhysicalKeyboard, useKeyboardHeight, useWillKeyboardBeShown,
 } from '../hooks/useKeyboardLayout'
 import {
@@ -42,8 +42,6 @@ const Body: React.FC = () => {
   const addSnackbar = useAddSnackbar()
   const alert = useAlert()
   const confirm = useConfirm()
-
-  useKeyboardLayout()
 
   const isKeyboardShown = useIsKeyboardShown()
   const isUsingPhysicalKeyboard = useIsUsingPhysicalKeyboard()
