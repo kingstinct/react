@@ -1,9 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Text } from 'react-native'
+import { Button, Text, TextInput } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ActivityIndicator, Switch } from 'react-native-paper'
 import Animated, { CurvedTransition } from 'react-native-reanimated'
@@ -11,19 +10,20 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import NativePortal from '../components/NativePortal'
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
-import SnackbarPresentationView from '../components/SnackbarPresentationView'
-import { SnackbarProvider } from '../contexts/Snackbar'
 import { StringsProvider } from '../contexts/Strings'
-import useAddSnackbar from '../hooks/useAddSnackbar'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
-import useSharedPortalArea, { SharedPortalAreaProvider, SharedPortalPresentationArea } from '../hooks/useSharedPortalArea'
+import useKeyboardLayout, {
+  useIsKeyboardShown, useIsUsingPhysicalKeyboard, useKeyboardHeight, useWillKeyboardBeShown,
+} from '../hooks/useKeyboardLayout'
+import {
+  SharedPortalAreaProvider, SharedPortalPresentationArea, useSharedPortalAreaInsets, useSharedPortalAreaSize,
+} from '../hooks/useSharedPortalArea'
+import { SnackbarPresentationView, useAddSnackbar, useSnackbarSettings } from '../hooks/useSnackbar'
 import Column from '../primitives/Column'
 import Row from '../primitives/Row'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
-
-const Stack = createNativeStackNavigator()
 
 const CustomSnackbarComponent: React.FC<SnackbarComponentProps> = (props) => (
   <DefaultSnackbarComponent
@@ -35,13 +35,20 @@ const CustomSnackbarComponent: React.FC<SnackbarComponentProps> = (props) => (
 )
 
 const Body: React.FC = () => {
-  const insets = useSharedPortalArea((state) => state.insets)
-  const size = useSharedPortalArea((state) => state.size)
+  const insets = useSharedPortalAreaInsets()
+  const size = useSharedPortalAreaSize()
   const [hasCustomSnackbar, setHasCustomSnackbar] = useState(false)
   const [confirmationDialogResponse, setConfirmationDialogResponse] = useState<boolean>()
   const addSnackbar = useAddSnackbar()
   const alert = useAlert()
   const confirm = useConfirm()
+
+  useKeyboardLayout()
+
+  const isKeyboardShown = useIsKeyboardShown()
+  const isUsingPhysicalKeyboard = useIsUsingPhysicalKeyboard()
+  const keyboardHeight = useKeyboardHeight()
+  const willKeyboardBeShown = useWillKeyboardBeShown()
 
   const addShortSnackbar = useCallback(() => {
     addSnackbar(
@@ -64,6 +71,17 @@ const Body: React.FC = () => {
   return (
     <SafeAreaProvider>
       <Column fill padding={16} spaceAround>
+        <Text>{`isKeyboardShown: ${isKeyboardShown.toString()}`}</Text>
+        <Text>{`isUsingPhysicalKeyboard: ${isUsingPhysicalKeyboard}`}</Text>
+        <Text>{`keyboardHeight: ${keyboardHeight}`}</Text>
+        <Text>{`willKeyboardBeShown: ${willKeyboardBeShown}`}</Text>
+
+        <TextInput
+          accessibilityHint='Text input field'
+          accessibilityLabel='Text input field'
+          placeholder='This is a text input'
+        />
+
         <Row style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text>Use custom snackbar</Text>
           <Switch onChange={() => setHasCustomSnackbar((v) => !v)} value={hasCustomSnackbar} />
@@ -99,7 +117,7 @@ const Body: React.FC = () => {
           <ActivityIndicator />
         </Animated.View>
       </NativePortal>
-      <SharedPortalPresentationArea colorize style={{ marginBottom: 200 }}>
+      <SharedPortalPresentationArea style={{ marginBottom: 200 }}>
         <SnackbarPresentationView
           key='124233'
           Component={SnackbarComponent}
@@ -111,18 +129,18 @@ const Body: React.FC = () => {
 }
 
 export default function App() {
+  useSnackbarSettings({ snackbarsToShowAtSameTime: 3 })
+
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
-          <SnackbarProvider snackbarsToShowAtSameTime={3}>
-            <SharedPortalAreaProvider>
-              <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
-                <StatusBar />
-                <Body />
-              </StringsProvider>
-            </SharedPortalAreaProvider>
-          </SnackbarProvider>
+          <SharedPortalAreaProvider>
+            <StringsProvider strings={{ Cancel: 'Dismiss', OK: 'Sure' }}>
+              <StatusBar />
+              <Body />
+            </StringsProvider>
+          </SharedPortalAreaProvider>
         </NavigationContainer>
       </GestureHandlerRootView>
     </SafeAreaProvider>

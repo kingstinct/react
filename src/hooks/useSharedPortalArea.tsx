@@ -33,13 +33,17 @@ function calculateInset(allCustomInsets: SharedPortalAreaStore['allCustomInsets'
 }
 
 const useSharedPortalArea = create<SharedPortalAreaStore>((set, get) => ({
-  allCustomInsets: [] as readonly InsetsWithId[],
-  defaultInsets: DEFAULT_INSETS,
+  allCustomInsets: [],
+  defaultInsets: {
+    top: 0, bottom: 0, left: 0, right: 0,
+  },
   setDefaultInsets: (defaultInsets: Required<Insets>) => set(() => ({
     defaultInsets,
     insets: calculateInset(get().allCustomInsets, defaultInsets),
   })),
-  insets: DEFAULT_INSETS,
+  insets: {
+    top: 0, bottom: 0, left: 0, right: 0,
+  },
   size: {
     x: 0,
     y: 0,
@@ -65,15 +69,13 @@ const useSharedPortalArea = create<SharedPortalAreaStore>((set, get) => ({
   setSize: (size: LayoutRectangle) => set(() => ({ size })),
 }))
 
-const DEFAULT_INSETS = {
-  top: 0, bottom: 0, left: 0, right: 0,
-}
-
 export const SharedPortalAreaProvider: React.FC<PropsWithChildren<{readonly insets?: Insets}>> = ({ children, insets }) => {
   const setDefaultInsets = useSharedPortalArea((state) => state.setDefaultInsets)
 
   useEffect(() => {
-    setDefaultInsets(insets ? { ...DEFAULT_INSETS, ...insets } : DEFAULT_INSETS)
+    setDefaultInsets({
+      top: 0, bottom: 0, left: 0, right: 0, ...(insets ?? {}),
+    })
   }, [insets, setDefaultInsets])
 
   return (
@@ -146,4 +148,6 @@ export const SharedPortalPresentationArea: React.FC<SharedPortalPresentationArea
   )
 }
 
-export default useSharedPortalArea
+export const useSharedPortalAreaInsets = () => useSharedPortalArea((state) => state.insets)
+
+export const useSharedPortalAreaSize = () => useSharedPortalArea((state) => state.size)
