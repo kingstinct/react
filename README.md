@@ -21,8 +21,13 @@ We believe this is a better approach than the alternatives:
 - Copy pasting between projects :)
 
 
+**Note!** At the moment there exist some parallel solutions, a legacy one which uses react context and a newer one, which we recommend, using hooks (utilizes [zustand](https://github.com/pmndrs/zustand) under the hood). They are:
 
+- `useKeyboardLayout`
+- `useSharedPortalArea`
+- `useSnackbar`
 
+The solutions based on react context may be removed in an upcoming major release.
 
 # Storybooks and Expo
 Currently the Storybooks implementation works for web and the example-app works with Expo for mobile.

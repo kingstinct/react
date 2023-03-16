@@ -132,6 +132,7 @@
     "@gorhom/portal": "^1.0.14",
     "nanoid": "^4.0.0",
     "ts-pattern": "^4.0.5",
-    "urql": ">=2"
+    "urql": ">=2",
+    "zustand": "^4.3.6"
   }
 }
