@@ -21,6 +21,12 @@ export type SnackbarPresentationViewProps = {
   readonly colorize?: boolean
 }
 
+/**
+ * This component should be placed where you want the snackbars to be shown.
+ *
+ * Do NOT use this component if you're using the hooks from `useSnackbar`,
+ * this is to be used with `SnackbarContext`!
+ */
 export const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   Component = DefaultSnackbarComponent,
   isVisibleToUser = true,

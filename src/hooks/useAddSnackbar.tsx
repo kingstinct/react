@@ -4,6 +4,10 @@ import { SnackbarContext } from '../contexts/Snackbar'
 
 import type { SnackbarConfig } from '../contexts/Snackbar'
 
+/**
+ * **Note!** This hook is to be used in conjunction with the Snackbar context, use
+ * `useAddSnackbar` from `src/hooks/useSnackbar.tsx` if you are not using the Snackbar context.
+ */
 export function useAddSnackbar<TMap extends Record<string, unknown> = Record<string, unknown>, T extends keyof TMap = keyof TMap>(defaultSnackbarConfig?: Omit<SnackbarConfig<TMap, T>, 'title'>) {
   const { addSnackbar } = useContext(SnackbarContext)
 

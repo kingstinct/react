@@ -6,6 +6,9 @@ import getRandomID from '../utils/getRandomID'
 
 import type { PropsWithChildren } from 'react'
 
+export const DEFAULT_SNACKBAR_TIMOUT_MS = 5000
+export const DEFAULT_SNACKBARS_TO_SHOW_AT_SAME_TIME = 1
+
 export type Action = {
   readonly key?: string,
   readonly label: string,
@@ -22,7 +25,7 @@ export type SnackbarConfig<TMap extends Record<string, unknown> = Record<string,
   readonly data?: TMap[T],
 }
 
-type SnackbarWithId = {
+export type SnackbarWithId = {
   readonly snackbarConfig: SnackbarConfig,
   readonly id: string,
 }
@@ -55,8 +58,8 @@ let hasWarned = false
 
 export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
   children,
-  defaultTimeoutMs = 5000,
-  snackbarsToShowAtSameTime = 1,
+  defaultTimeoutMs = DEFAULT_SNACKBAR_TIMOUT_MS,
+  snackbarsToShowAtSameTime = DEFAULT_SNACKBARS_TO_SHOW_AT_SAME_TIME,
 }) => {
   const [snackbars, setSnackbars] = useState<readonly SnackbarWithId[]>([])
   const timeouts = useRef(new Map<string, number>())
