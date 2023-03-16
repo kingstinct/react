@@ -33,7 +33,11 @@ module.exports = {
       config.resolve.alias = {...config.resolve.alias, ...expoConfig.resolve.alias}
       config.entry = ['babel-polyfill', ...config.entry]
       config.plugins = [...config.plugins, new webpack.EnvironmentPlugin({ JEST_WORKER_ID: null }),
-        new webpack.DefinePlugin({ process: { env: {} } })]
+        new webpack.DefinePlugin({
+          // https://github.com/jaredpalmer/formik/issues/1607
+          __DEV__: process.env.NODE_ENV === 'development',
+          process: { env: {} },
+        })]
       config.resolve.extensions = ['.web.js', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx', 'web.ts', 'web.tsx']
       config.module.rules = [
         {

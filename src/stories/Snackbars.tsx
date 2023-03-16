@@ -7,12 +7,9 @@ import {
   Button, Text, View,
 } from 'react-native'
 
-import DefaultSnackbarComponent from '../components/SnackbarComponent'
-import SnackbarPresentationView from '../components/SnackbarPresentationView'
-import { SnackbarProvider } from '../contexts/Snackbar'
-import useAddSnackbar from '../hooks/useAddSnackbar'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
+import { DefaultSnackbarComponent, SnackbarPresentationView, useAddSnackbar } from '../hooks/useSnackbar'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
 
@@ -68,8 +65,9 @@ export default function SnackbarsStory() {
   const alert = useAlert()
   const confirm = useConfirm()
   const [confirmResponse, setConfirmResponse] = useState<boolean>()
+
   return (
-    <SnackbarProvider>
+    <View>
       <Inner />
       <Button title='Open an alert' onPress={async () => alert('This is an alert', 'This is the message')} />
 
@@ -82,6 +80,6 @@ export default function SnackbarsStory() {
       </Text>
 
       <SnackbarPresentationView Component={CustomSnackbar} style={{ paddingBottom: 200 }} />
-    </SnackbarProvider>
+    </View>
   )
 }
