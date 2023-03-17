@@ -1,5 +1,14 @@
 
 
+# [0.16.0](https://github.com/Kingstinct/react/compare/v0.15.0...v0.16.0) (2023-03-16)
+
+
+### Performance Improvements
+
+* use zustand for keybord layout ([eb58d4b](https://github.com/Kingstinct/react/commit/eb58d4be231f121a64f41702621d7895d54ad45f))
+* use zustand for shared portal area ([663668b](https://github.com/Kingstinct/react/commit/663668b1fb95689ab87295765c6a11c37fd5ef1a))
+* use zustand for snackbars ([93c7e42](https://github.com/Kingstinct/react/commit/93c7e424663e4954398b3928247d52f29eaecb24))
+
 # [0.15.0](https://github.com/kingstinct/react/compare/v0.13.0...v0.15.0) (2023-01-15)
 
 
