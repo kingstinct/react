@@ -18,7 +18,7 @@
     "android": "cp index.expo.js index.js && expo run:android",
     "ios": "cp index.expo.js index.js && expo run:ios",
     "web": "cp index.expo.js index.js && expo start --web",
-    "build": " rimraf lib && tsc --declaration -p ./tsconfig.build.json",
+    "build": " rimraf utils primitives hooks contexts components stories && tsc --declaration -p ./tsconfig.build.json",
     "test": "concurrently \"yarn test-only\" \"yarn lint\" \"tsc --noEmit\"",
     "test-only": "jest",
     "lint": "eslint . --cache",
