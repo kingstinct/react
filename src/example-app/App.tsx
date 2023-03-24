@@ -14,7 +14,7 @@ import { StringsProvider } from '../contexts/Strings'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
 import {
-  useIsKeyboardShown, useIsUsingPhysicalKeyboard, useKeyboardHeight, useWillKeyboardBeShown,
+  useIsKeyboardShown, useKeyboardHeight, useWillKeyboardBeShown,
 } from '../hooks/useKeyboardLayout'
 import {
   SharedPortalAreaProvider, SharedPortalPresentationArea, useSharedPortalAreaInsets, useSharedPortalAreaSize,
@@ -44,7 +44,6 @@ const Body: React.FC = () => {
   const confirm = useConfirm()
 
   const isKeyboardShown = useIsKeyboardShown()
-  const isUsingPhysicalKeyboard = useIsUsingPhysicalKeyboard()
   const keyboardHeight = useKeyboardHeight()
   const willKeyboardBeShown = useWillKeyboardBeShown()
 
@@ -70,7 +69,6 @@ const Body: React.FC = () => {
     <SafeAreaProvider>
       <Column fill padding={16} spaceAround>
         <Text>{`isKeyboardShown: ${isKeyboardShown.toString()}`}</Text>
-        <Text>{`isUsingPhysicalKeyboard: ${isUsingPhysicalKeyboard}`}</Text>
         <Text>{`keyboardHeight: ${keyboardHeight}`}</Text>
         <Text>{`willKeyboardBeShown: ${willKeyboardBeShown}`}</Text>
 
