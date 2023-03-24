@@ -1,5 +1,18 @@
 
 
+## [0.16.2](https://github.com/Kingstinct/react/compare/v0.16.0...v0.16.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* remove fuzzy isUsingPhysicalKeyboard flag ([8ee0737](https://github.com/Kingstinct/react/commit/8ee07376d18e4addeac771fa4d1c33dda5f67a1b))
+* update rimraf ([741f205](https://github.com/Kingstinct/react/commit/741f2055e29a07af02e924fe691bb14ff12789f7))
+
+
+### Features
+
+* add devtools to keyboardLayout zustand store ([b677843](https://github.com/Kingstinct/react/commit/b677843c782bad0755fde33aaa1db7b265f198b6))
+
 # [0.16.0](https://github.com/Kingstinct/react/compare/v0.15.0...v0.16.0) (2023-03-16)
 
 
