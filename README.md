@@ -19,13 +19,6 @@ We believe this is a better approach than the alternatives:
 - Using one single utility library for everything, which would introduce unnecessary dependencies
 - Using lots of micro-libs. Micro-libs does have it's advantages, but is harder to maintain and means loosing oversight of the dependencies in a project.
 - Copy pasting between projects :)
-
-
-**Note!** At the moment there exist some parallel solutions, a legacy one which uses react context and a newer one, which we recommend, using hooks (utilizes [zustand](https://github.com/pmndrs/zustand) under the hood). They are:
-
-- `useSharedPortalArea`
-
-The solutions based on react context may be removed in an upcoming major release.
-
+ 
 # Storybooks and Expo
 Currently the Storybooks implementation works for web and the example-app works with Expo for mobile.

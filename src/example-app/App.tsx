@@ -10,16 +10,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { SnackbarPresentationView } from '../components'
 import NativePortal from '../components/NativePortal'
+import SharedPortalAreaProvider from '../components/SharedPortalAreaProvider'
+import SharedPortalPresentationArea from '../components/SharedPortalPresentationArea'
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import { StringsProvider } from '../contexts/Strings'
 import {
-  useAddSnackbar, useIsKeyboardShown, useKeyboardHeight, useWillKeyboardBeShown, useSnackbarSettings,
+  useAddSnackbar, useIsKeyboardShown, useKeyboardHeight, useWillKeyboardBeShown, useSnackbarSettings, useSharedPortalAreaInsets, useSharedPortalAreaSize,
 } from '../hooks'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
-import {
-  SharedPortalAreaProvider, SharedPortalPresentationArea, useSharedPortalAreaInsets, useSharedPortalAreaSize,
-} from '../hooks/useSharedPortalArea'
 import Column from '../primitives/Column'
 import Row from '../primitives/Row'
 

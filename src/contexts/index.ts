@@ -1,5 +1,4 @@
 export * from './Auth'
-export * from './SharedPortalArea'
 export * from './Strings'
 export * from './Theme'
 export * from './Urql'
