@@ -1,5 +1,4 @@
 export * from './Auth'
-export * from './Keyboard'
 export * from './SharedPortalArea'
 export * from './Snackbar'
 export * from './Strings'

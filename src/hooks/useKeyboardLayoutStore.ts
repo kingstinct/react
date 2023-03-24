@@ -16,7 +16,14 @@ interface KeyboardLayoutStore {
   readonly setWillKeyboardBeHidden: () => void
 }
 
-const useKeyboardLayoutStore = create<KeyboardLayoutStore>()(
+/**
+ * This zustand store is used to keep track of the keyboard layout.
+ *
+ * Prefer using the individual hooks
+ * {@link useIsKeyboardShown}, {@link useKeyboardHeight}, {@link useWillKeyboardBeShown}
+ * over this directly.
+ */
+export const useKeyboardLayoutStore = create<KeyboardLayoutStore>()(
   devtools(
     (set) => {
       Keyboard.addListener('keyboardDidShow', (event) => set({
@@ -41,12 +48,4 @@ const useKeyboardLayoutStore = create<KeyboardLayoutStore>()(
   ),
 )
 
-export const useIsKeyboardShown = () => useKeyboardLayoutStore((state) => state.isKeyboardShown)
-
-/**
- * The height of the keyboard will not be reset to 0 when the keyboard is hidden,
- * use {@link useIsKeyboardShown} to check if the keyboard is currently shown.
- */
-export const useKeyboardHeight = () => useKeyboardLayoutStore((state) => state.keyboardHeight)
-
-export const useWillKeyboardBeShown = () => useKeyboardLayoutStore((state) => state.willKeyboardBeShown)
+export default useKeyboardLayoutStore
