@@ -1,15 +1,13 @@
 /* eslint-disable import/no-unresolved */
 
-import React, {
-  useEffect, useRef, useState,
-} from 'react'
-import {
-  Button, Text, View,
-} from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, Text, View } from 'react-native'
 
+import { SnackbarPresentationView } from '../components'
+import { DefaultSnackbarComponent } from '../components/SnackbarComponent'
+import useAddSnackbar from '../hooks/useAddSnackbar'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
-import { DefaultSnackbarComponent, SnackbarPresentationView, useAddSnackbar } from '../hooks/useSnackbar'
 
 import type { SnackbarComponentProps } from '../components/SnackbarComponent'
 

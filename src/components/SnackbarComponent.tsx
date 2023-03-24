@@ -1,15 +1,10 @@
-import React, {
-  useCallback,
-} from 'react'
+import React, { useCallback } from 'react'
 import {
-  Platform,
-  StyleSheet, Text, TouchableOpacity, View,
+  Platform, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native'
-import Animated, {
-  FadeIn, FadeOut,
-} from 'react-native-reanimated'
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 
-import type { Action, SnackbarConfig } from '../contexts/Snackbar'
+import type { Action, SnackbarConfig } from '../hooks/useSnackbarStore'
 import type { PropsWithChildren } from 'react'
 import type {
   StyleProp, ViewStyle, ColorValue, TextStyle,
