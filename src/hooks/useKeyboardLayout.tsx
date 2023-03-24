@@ -1,5 +1,6 @@
 import { Keyboard } from 'react-native'
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
 interface KeyboardLayoutStore {
   // these properties are exposes through individual hooks
@@ -15,26 +16,30 @@ interface KeyboardLayoutStore {
   readonly setWillKeyboardBeHidden: () => void
 }
 
-const useKeyboardLayoutStore = create<KeyboardLayoutStore>((set) => {
-  Keyboard.addListener('keyboardDidShow', (event) => set({
-    isKeyboardShown: true,
-    keyboardHeight: event.endCoordinates.height,
-  }))
-  Keyboard.addListener('keyboardDidHide', () => set({ isKeyboardShown: false }))
-  Keyboard.addListener('keyboardWillShow', () => set({ willKeyboardBeShown: true }))
-  Keyboard.addListener('keyboardWillHide', () => set({ willKeyboardBeShown: false }))
+const useKeyboardLayoutStore = create<KeyboardLayoutStore>()(
+  devtools(
+    (set) => {
+      Keyboard.addListener('keyboardDidShow', (event) => set({
+        isKeyboardShown: true,
+        keyboardHeight: event.endCoordinates.height,
+      }))
+      Keyboard.addListener('keyboardDidHide', () => set({ isKeyboardShown: false }))
+      Keyboard.addListener('keyboardWillShow', () => set({ willKeyboardBeShown: true }))
+      Keyboard.addListener('keyboardWillHide', () => set({ willKeyboardBeShown: false }))
 
-  return {
-    isKeyboardShown: false,
-    keyboardHeight: 0,
-    willKeyboardBeShown: false,
-    setKeyboardVisible: () => set({ isKeyboardShown: true }),
-    setKeyboardHidden: () => set({ isKeyboardShown: false }),
-    setKeyboardHeight: (height) => set({ keyboardHeight: height }),
-    setWillKeyboardBeShown: () => set({ willKeyboardBeShown: true }),
-    setWillKeyboardBeHidden: () => set({ willKeyboardBeShown: false }),
-  }
-})
+      return {
+        isKeyboardShown: false,
+        keyboardHeight: 0,
+        willKeyboardBeShown: false,
+        setKeyboardVisible: () => set({ isKeyboardShown: true }),
+        setKeyboardHidden: () => set({ isKeyboardShown: false }),
+        setKeyboardHeight: (height) => set({ keyboardHeight: height }),
+        setWillKeyboardBeShown: () => set({ willKeyboardBeShown: true }),
+        setWillKeyboardBeHidden: () => set({ willKeyboardBeShown: false }),
+      }
+    },
+  ),
+)
 
 export const useIsKeyboardShown = () => useKeyboardLayoutStore((state) => state.isKeyboardShown)
 
