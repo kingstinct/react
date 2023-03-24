@@ -28,11 +28,11 @@ const useKeyboardLayoutStore = create<KeyboardLayoutStore>((set) => {
     isKeyboardShown: false,
     keyboardHeight: 0,
     willKeyboardBeShown: false,
-    setKeyboardVisible: () => set(() => ({ isKeyboardShown: true })),
-    setKeyboardHidden: () => set(() => ({ isKeyboardShown: false })),
-    setKeyboardHeight: (height) => set(() => ({ keyboardHeight: height })),
-    setWillKeyboardBeShown: () => set(() => ({ willKeyboardBeShown: true })),
-    setWillKeyboardBeHidden: () => set(() => ({ willKeyboardBeShown: false })),
+    setKeyboardVisible: () => set({ isKeyboardShown: true }),
+    setKeyboardHidden: () => set({ isKeyboardShown: false }),
+    setKeyboardHeight: (height) => set({ keyboardHeight: height }),
+    setWillKeyboardBeShown: () => set({ willKeyboardBeShown: true }),
+    setWillKeyboardBeHidden: () => set({ willKeyboardBeShown: false }),
   }
 })
 
