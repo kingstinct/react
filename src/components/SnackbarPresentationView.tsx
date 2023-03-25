@@ -1,18 +1,14 @@
-import React, {
-  useEffect,
-} from 'react'
-import {
-  View,
-} from 'react-native'
+import React, { useEffect } from 'react'
+import { View } from 'react-native'
 
-import { SnackbarContext } from '../contexts/Snackbar'
+import useRemoveSnackbar from '../hooks/useRemoveSnackbar'
+import useSnackbarsToShow from '../hooks/useSnackbarsToShow'
+import useSnackbarWasPresented from '../hooks/useSnackbarWasPresented'
 import randomHexColorAlpha from '../utils/randomHexColor'
 import DefaultSnackbarComponent from './SnackbarComponent'
 
 import type { SnackbarComponentProps } from './SnackbarComponent'
-import type {
-  StyleProp, ViewStyle,
-} from 'react-native'
+import type { StyleProp, ViewStyle } from 'react-native'
 
 export type SnackbarPresentationViewProps = {
   readonly Component?: React.FC<SnackbarComponentProps>,
@@ -23,9 +19,6 @@ export type SnackbarPresentationViewProps = {
 
 /**
  * This component should be placed where you want the snackbars to be shown.
- *
- * Do NOT use this component if you're using the hooks from `useSnackbar`,
- * this is to be used with `SnackbarContext`!
  */
 export const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> = ({
   Component = DefaultSnackbarComponent,
@@ -33,7 +26,9 @@ export const SnackbarPresentationView: React.FC<SnackbarPresentationViewProps> =
   style,
   colorize,
 }) => {
-  const { snackbarWasPresented, snackbarsToShow, removeSnackbar } = React.useContext(SnackbarContext)
+  const snackbarWasPresented = useSnackbarWasPresented()
+  const snackbarsToShow = useSnackbarsToShow()
+  const removeSnackbar = useRemoveSnackbar()
 
   useEffect(() => {
     if (isVisibleToUser) {

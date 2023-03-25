@@ -8,18 +8,17 @@ import { ActivityIndicator, Switch } from 'react-native-paper'
 import Animated, { CurvedTransition } from 'react-native-reanimated'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
+import { SnackbarPresentationView } from '../components'
 import NativePortal from '../components/NativePortal'
+import SharedPortalAreaProvider from '../components/SharedPortalAreaProvider'
+import SharedPortalPresentationArea from '../components/SharedPortalPresentationArea'
 import DefaultSnackbarComponent from '../components/SnackbarComponent'
 import { StringsProvider } from '../contexts/Strings'
+import {
+  useAddSnackbar, useIsKeyboardShown, useKeyboardHeight, useWillKeyboardBeShown, useSnackbarSettings, useSharedPortalAreaInsets, useSharedPortalAreaSize,
+} from '../hooks'
 import useAlert from '../hooks/useAlert'
 import useConfirm from '../hooks/useConfirm'
-import {
-  useIsKeyboardShown, useKeyboardHeight, useWillKeyboardBeShown,
-} from '../hooks/useKeyboardLayout'
-import {
-  SharedPortalAreaProvider, SharedPortalPresentationArea, useSharedPortalAreaInsets, useSharedPortalAreaSize,
-} from '../hooks/useSharedPortalArea'
-import { SnackbarPresentationView, useAddSnackbar, useSnackbarSettings } from '../hooks/useSnackbar'
 import Column from '../primitives/Column'
 import Row from '../primitives/Row'
 
