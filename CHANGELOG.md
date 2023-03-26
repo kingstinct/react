@@ -1,5 +1,14 @@
 
 
+# [1.0.0](https://github.com/Kingstinct/react/compare/v0.16.2...v1.0.0) (2023-03-26)
+
+
+### Bug Fixes
+
+* remove keyboard context ([7e9881c](https://github.com/Kingstinct/react/commit/7e9881cb4be9191c14b843c7e7e35a15357ec643))
+* remove sharedPortalArea context ([cb63603](https://github.com/Kingstinct/react/commit/cb63603ddd3fc647654905de032dd5c468c838a2))
+* remove snackbar context ([c33b8ca](https://github.com/Kingstinct/react/commit/c33b8caa558e4e82098599656760476791ee598b))
+
 ## [0.16.2](https://github.com/Kingstinct/react/compare/v0.16.0...v0.16.2) (2023-03-24)
 
 
