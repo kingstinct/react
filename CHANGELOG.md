@@ -1,5 +1,12 @@
 
 
+## [1.0.1](https://github.com/Kingstinct/react/compare/v1.0.0...v1.0.1) (2023-03-26)
+
+
+### Bug Fixes
+
+* add missing components to export ([11b8250](https://github.com/Kingstinct/react/commit/11b82502d27938c6dcf396d55ede02bb139911d4))
+
 # [1.0.0](https://github.com/Kingstinct/react/compare/v0.16.2...v1.0.0) (2023-03-26)
 
 
