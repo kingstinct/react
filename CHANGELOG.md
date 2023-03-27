@@ -1,5 +1,12 @@
 
 
+## [1.0.2](https://github.com/Kingstinct/react/compare/v1.0.1...v1.0.2) (2023-03-27)
+
+
+### Bug Fixes
+
+* remove code depending on nanoid lib ([0620fe3](https://github.com/Kingstinct/react/commit/0620fe31c56fbf562f27d734299c8d6b7fbf8ad7))
+
 ## [1.0.1](https://github.com/Kingstinct/react/compare/v1.0.0...v1.0.1) (2023-03-26)
 
 
