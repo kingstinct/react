@@ -1,5 +1,12 @@
 
 
+## [1.0.3](https://github.com/Kingstinct/react/compare/v1.0.2...v1.0.3) (2023-03-27)
+
+
+### Bug Fixes
+
+* kick out nanoid ([9713341](https://github.com/Kingstinct/react/commit/9713341e7d161809f652cff6785a7277805aa46d))
+
 ## [1.0.2](https://github.com/Kingstinct/react/compare/v1.0.1...v1.0.2) (2023-03-27)
 
 
