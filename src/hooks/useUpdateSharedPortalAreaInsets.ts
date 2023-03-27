@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid'
 import { useEffect } from 'react'
 
+import generateId from '../utils/generateId'
 import useSharedPortalAreaStore from './useSharedPortalAreaStore'
 
 import type { Insets } from 'react-native'
@@ -12,7 +12,7 @@ export const useUpdateSharedPortalAreaInsets = (insets: Required<Insets>, enable
 
   useEffect(() => {
     if (enable) {
-      const id = nanoid()
+      const id = generateId()
       pushInset({ ...insets, id })
       return () => removeInset(id)
     }

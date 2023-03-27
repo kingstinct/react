@@ -1,7 +1,7 @@
-import { nanoid } from 'nanoid'
 import { useEffect } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import generateId from '../utils/generateId'
 import useSharedPortalAreaStore from './useSharedPortalAreaStore'
 
 import type { Insets } from 'react-native'
@@ -16,7 +16,7 @@ export const useUpdateSharedPortalSafeAreaInsets = (insets: Insets, enable = tru
 
   useEffect(() => {
     if (enable) {
-      const id = nanoid()
+      const id = generateId()
       pushInset({ ...safeAreaInsets, ...insets, id })
       return () => removeInset(id)
     }

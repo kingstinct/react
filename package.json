@@ -55,7 +55,6 @@
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^28.1.4",
-    "@types/nanoid": "^3.0.0",
     "@types/node": "^18.7.8",
     "@types/react": "18",
     "@types/react-native": "0.69",
@@ -130,7 +129,6 @@
   },
   "dependencies": {
     "@gorhom/portal": "^1.0.14",
-    "nanoid": "^4.0.0",
     "ts-pattern": "^4.0.5",
     "urql": ">=2",
     "zustand": "^4.3.6"
