@@ -70,15 +70,16 @@ const useSnackbarStore = create<SnackbarStore>((set) => ({
   snackbars: [],
   snackbarsToShow: [],
   addSnackbar: (snackbarConfig) => set((state) => {
+    const id = snackbarConfig.id || getRandomID()
     const snackbars = [
-      ...state.snackbars,
+      ...state.snackbars.filter((s) => s.id !== id),
       {
         snackbarConfig: {
           ...snackbarConfig,
           type: snackbarConfig.type as never, // here is where type safety ends
           data: snackbarConfig.data as never,
         },
-        id: snackbarConfig.id || getRandomID(),
+        id,
       },
     ]
 

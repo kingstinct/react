@@ -9,7 +9,7 @@ export const randomHexColor = () => {
 export const randomHexColorAlpha = (alpha = '55') => {
   const color = randomHexColor()
 
-  return `${color}55`
+  return `${color}${alpha}`
 }
 
 export default randomHexColorAlpha

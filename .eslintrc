@@ -3,6 +3,8 @@
   "ignorePatterns": ["lib", "/utils", "/hooks", "/contexts", "/components", "/primitives", "/index.js", "index.d.ts", "/stories", "/example-app", "/storybook-static"],
   "rules": {
     "import/no-extraneous-dependencies": 0,
-    "react/boolean-prop-naming": 0
+    "react/boolean-prop-naming": 0,
+    "unicorn/expiring-todo-comments": 0,
+    "@typescript-eslint/sort-type-union-intersection-members": 0
   }
 }

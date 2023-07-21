@@ -21,7 +21,8 @@ export const NativePortal: React.FC<Props> = ({
   return (
     <Portal>
       <FullWindowOverlay
-        pointerEvents={pointerEvents}
+        // @ts-expect-error not sure why this is happening
+        pointerEvents={pointerEvents as unknown}
         style={style}
       >
         { children }

@@ -5,8 +5,8 @@ import {
 
 import type { RefreshControlProps } from 'react-native'
 
-type Props = Omit<RefreshControlProps, 'onRefresh' | 'refreshing'> & {
-  readonly onRefetch: (() => Promise<unknown> | unknown) | undefined,
+type Props<T = unknown> = Omit<RefreshControlProps, 'onRefresh' | 'refreshing'> & {
+  readonly onRefetch: (() => Promise<T> | T) | undefined,
   readonly onStatusChange?: (isLoading: boolean) => void,
 }
 

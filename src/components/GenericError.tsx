@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import React, {
   useContext,

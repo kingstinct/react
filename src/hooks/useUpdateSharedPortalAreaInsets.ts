@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import generateId from '../utils/generateId'
 import useSharedPortalAreaStore from './useSharedPortalAreaStore'
+import generateId from '../utils/generateId'
 
 import type { Insets } from 'react-native'
 

@@ -34,7 +34,7 @@ type AuthStateInternal = { readonly token: string | null, readonly isReady: bool
 
 export const getToken = async (authTokenKey = AUTH_TOKEN_KEY_DEFAULT) => {
   const t = await AsyncStorage.getItem(authTokenKey)
-  
+
   return t
 }
 

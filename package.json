@@ -28,6 +28,13 @@
     "build-storybook": "build-storybook",
     "release": "yarn test && npx release-it"
   },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*.js": "eslint --fix",
+    "*.json": "eslint --fix",
+    "*.graphql": "eslint --fix",
+    "*.yml": "eslint --fix"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -92,6 +99,7 @@
     "jest": "27",
     "jest-expo": "^45.0.1",
     "jwt-decode": "^3.1.2",
+    "lint-staged": "^13.2.3",
     "lodash": "^4.17.21",
     "react": "17",
     "react-dom": "17",

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "jsx":"react",
     "target": "ES6",
-    "strict": false
+    "strict": false,
+    "ignoreDeprecations": "5.0"
   },
   "exclude": [ "example-app" ]
 }
