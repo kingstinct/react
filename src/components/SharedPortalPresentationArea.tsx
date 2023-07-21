@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import Animated, { CurvedTransition } from 'react-native-reanimated'
 
-import useSharedPortalAreaStore from '../hooks/useSharedPortalAreaStore'
 import NativePortal from './NativePortal'
+import useSharedPortalAreaStore from '../hooks/useSharedPortalAreaStore'
 
 import type { PropsWithChildren } from 'react'
 import type { LayoutChangeEvent, ViewStyle, StyleProp } from 'react-native'
