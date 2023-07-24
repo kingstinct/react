@@ -34,7 +34,7 @@
     "*.js": "eslint --fix",
     "*.json": "eslint --fix",
     "*.graphql": "eslint --fix",
-    "*.yml": "eslint"
+    "*.yml": "eslint --fix"
   },
   "publishConfig": {
     "access": "public",

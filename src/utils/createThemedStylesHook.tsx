@@ -91,7 +91,9 @@ type OptimizedFactoryProps = {
   readonly size: ScaledSize,
   readonly insets: EdgeInsets,
 }
-type OptimizedFactory<TProps extends FactoryCustomProps, TIncludedProps extends ReadonlyArray<keyof OptimizedFactoryProps>, T extends StyleSheet.NamedStyles<T>> = (props: TProps & Pick<OptimizedFactoryProps, TIncludedProps>) => T | StyleSheet.NamedStyles<T>
+ * type OptimizedFactory<TProps extends FactoryCustomProps, TIncludedProps extends ReadonlyArray<keyof
+ * OptimizedFactoryProps>, T extends StyleSheet.NamedStyles<T>> = (props: TProps & Pick<OptimizedFactoryProps,
+ * TIncludedProps>) => T | StyleSheet.NamedStyles<T>
 
 Maybe 1: would probably be good to shallow memoize custom props (so users don't need to worry about memoizing)
 Maybe 2: specify requirements, something in the area of:
@@ -99,7 +101,9 @@ createStylesHook(({ theme, size, insets }) => {
 ...styles
 }, ['theme', 'size', 'insets'])
 
-export function createOptimizedThemedStylesHook<TProps extends FactoryCustomProps, TIncludedProps extends ReadonlyArray<keyof OptimizedFactoryProps>, TStyle extends StyleSheet.NamedStyles<TStyle>>(factory: OptimizedFactory<TProps, TIncludedProps, TStyle>, includedProps?: TIncludedProps) {
+ * export function createOptimizedThemedStylesHook<TProps extends FactoryCustomProps, TIncludedProps extends
+ * ReadonlyArray<keyof OptimizedFactoryProps>, TStyle extends StyleSheet.NamedStyles<TStyle>>(factory:
+ * OptimizedFactory<TProps, TIncludedProps, TStyle>, includedProps?: TIncludedProps) {
   return (props?: TProps) => {
     const theme = useTheme(),
           size = useWindowDimensions(),
