@@ -45,7 +45,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: cache-warmer
+    # needs: cache-warmer
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
@@ -62,7 +62,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        id: install
+        if: steps.setup.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - name: Test
@@ -72,7 +72,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: cache-warmer
+    # needs: cache-warmer
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
@@ -90,7 +90,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        id: install
+        if: steps.setup.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - name: Typecheck
@@ -100,7 +100,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: cache-warmer
+    # needs: cache-warmer
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
@@ -118,7 +118,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        id: install
+        if: steps.setup.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - name: Lint

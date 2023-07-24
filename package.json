@@ -24,7 +24,7 @@
     "test-only": "jest",
     "lint": "eslint . --cache",
     "prepare": "husky install",
-    "prepublishOnly": "concurrently \"yarn build\" \"yarn test\"",
+    "prepublishOnly": "yarn build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release": "yarn test && npx release-it"
