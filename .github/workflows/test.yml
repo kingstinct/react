@@ -62,7 +62,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        run: yarn install --frozen-lockfile --prefer-offline
+        run: yarn install --frozen-lockfile --offline
 
       - name: Test
         run: yarn test-only
@@ -89,7 +89,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        run: yarn install --frozen-lockfile --prefer-offline
+        run: yarn install --frozen-lockfile --offline
 
       - name: Typecheck
         run: yarn typecheck
@@ -116,7 +116,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install deps
-        run: yarn install --frozen-lockfile --prefer-offline
+        run: yarn install --frozen-lockfile --offline
 
       - name: Lint
         run: yarn lint
