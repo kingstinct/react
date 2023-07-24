@@ -19,8 +19,9 @@ jobs:
     needs: test
     uses: Kingstinct/utils/.github/workflows/publish.yml@main
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.npm_token }}
     with:
       description: Autorelease
       release_type: patch
+      package_manager: yarn

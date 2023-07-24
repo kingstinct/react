@@ -19,7 +19,8 @@
     "ios": "cp index.expo.js index.js && expo run:ios",
     "web": "cp index.expo.js index.js && expo start --web",
     "build": " rimraf utils primitives hooks contexts components stories && tsc --declaration -p ./tsconfig.build.json",
-    "test": "concurrently \"yarn test-only\" \"yarn lint\" \"tsc --noEmit\"",
+    "test": "concurrently \"yarn test-only\" \"yarn lint\" \"yarn typecheck\"",
+    "typecheck": "tsc --noEmit",
     "test-only": "jest",
     "lint": "eslint . --cache",
     "prepare": "husky install",
@@ -33,7 +34,7 @@
     "*.js": "eslint --fix",
     "*.json": "eslint --fix",
     "*.graphql": "eslint --fix",
-    "*.yml": "eslint --fix"
+    "*.yml": "eslint"
   },
   "publishConfig": {
     "access": "public",
