@@ -1,3 +1,5 @@
+⚠️ This repo has been moved to [Kingstinct/zemble](https://github.com/kingstinct/zemble/tree/main/packages/react), and has been renamed to [`@zemble/react`](https://www.npmjs.com/package/@zemble/react).
+
 # @kingstinct/react
 
 [![npm (scoped)](https://img.shields.io/npm/v/@kingstinct/react?style=for-the-badge)](https://www.npmjs.com/package/@kingstinct/react)
